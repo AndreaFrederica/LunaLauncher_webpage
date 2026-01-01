@@ -8,6 +8,7 @@
     <meta name="description" content="Luna Launcher：专注自由与整洁的 Minecraft 启动器。">
     <link rel="icon" type="image/png" href="resources/org.lunalauncher.LunaLauncher_256.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
 </head>
 <body>
     <div class="container">
@@ -79,7 +80,7 @@
                     </div>
                     <div class="feature-row reverse">
                         <div class="feature-text">
-                            <h2 data-i18n="features.download_title">下载与镜像加速</h2>
+                            <h2><span data-i18n="features.download_title">下载与镜像加速</span> <span class="badge" style="font-size: 11px; margin-left: 8px;" data-i18n="features.download_badge">开发中</span></h2>
                             <p data-i18n="features.download_desc">支持社区镜像 API(例如 BMCLAPI),让在国内网络环境下的下载更顺畅。BMCLAPI 支持仍在完善,部分场景可能不可用。</p>
                         </div>
                     </div>
@@ -92,7 +93,7 @@
                     <div class="feature-row reverse">
                         <div class="feature-text">
                             <h2 data-i18n="features.p2p_title">P2P 联机</h2>
-                            <p data-i18n="features.p2p_desc">内置支持 <a href="https://github.com/burningtnt/Terracotta" target="_blank" rel="noopener noreferrer">Terracotta</a> 和 <a href="https://github.com/ElicaseTech/YukariConnect" target="_blank" rel="noopener noreferrer">YukariConnect</a> P2P 联机功能。<span data-i18n="features.p2p_desc_more">无需端口映射或复杂的网络配置即可与朋友一起游戏。YukariConnect 旨在作为 AGPL 许可的 Terracotta 的替代实现。</span></p>
+                            <p data-i18n-html="features.p2p_desc">内置支持 <a href="https://github.com/burningtnt/Terracotta" target="_blank" rel="noopener noreferrer">Terracotta</a> 和 <a href="https://github.com/ElicaseTech/YukariConnect" target="_blank" rel="noopener noreferrer">YukariConnect</a> P2P 联机功能。<span data-i18n="features.p2p_desc_more">无需端口映射或复杂的网络配置即可与朋友一起游戏。YukariConnect 旨在作为 AGPL 许可的 Terracotta 的替代实现。</span></p>
                         </div>
                     </div>
                     <div class="feature-row">
@@ -177,5 +178,22 @@
     </div>
 
     <script src="i18n.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
+    <script>
+        // Initialize GLightbox for image preview
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = GLightbox({
+                selector: 'img[alt]:not(.brand img, .comment-avatar), a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"], a[href$=".webp"]',
+                touchNavigation: true,
+                loop: true,
+                zoomable: true,
+                draggable: true,
+                openEffect: 'zoom',
+                closeEffect: 'zoom',
+                slideEffect: 'slide'
+            });
+        });
+    </script>
 </body>
 </html>

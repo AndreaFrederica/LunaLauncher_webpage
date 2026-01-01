@@ -299,6 +299,12 @@ a:hover {
     height: auto;
     display: block;
     transform: scale(1.02);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.hero-art img:hover {
+    transform: scale(1.05);
 }
 
 .hero-badges {
@@ -1019,4 +1025,28 @@ p code {
     .code-block pre {
         font-size: 12px;
     }
+}
+
+/* Image preview clickability hint */
+img[alt]:not(.brand img, .comment-avatar) {
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+img[alt]:not(.brand img, .comment-avatar):hover {
+    filter: brightness(1.1);
+}
+
+/* GLightbox custom theme to match website */
+.glightbox-clean .gslide-description {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+}
+
+.glightbox-clean .gslide-desc {
+    color: var(--text) !important;
+}
+
+.glightbox-clean .goverlay {
+    background: rgba(0, 0, 0, 0.85) !important;
 }

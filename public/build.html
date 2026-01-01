@@ -8,6 +8,7 @@
     <meta name="description" content="Luna Launcher 构建指南">
     <link rel="icon" type="image/png" href="resources/org.lunalauncher.LunaLauncher_256.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
 </head>
 <body>
     <div class="container">
@@ -587,6 +588,23 @@ cmake --install build</code></pre>
                         group.classList.toggle('expanded');
                     }
                 });
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
+    <script>
+        // Initialize GLightbox for image preview
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = GLightbox({
+                selector: 'img[alt]:not(.brand img, .comment-avatar), a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"], a[href$=".webp"]',
+                touchNavigation: true,
+                loop: true,
+                zoomable: true,
+                draggable: true,
+                openEffect: 'zoom',
+                closeEffect: 'zoom',
+                slideEffect: 'slide'
             });
         });
     </script>
