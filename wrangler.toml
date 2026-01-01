@@ -1,4 +1,4 @@
 # Cloudflare Pages 配置（纯静态）
 # wrangler.toml
 name = 'lunalauncher-webpage'
-pages_build_output_dir = "/public"
+pages_build_output_dir = "public"
