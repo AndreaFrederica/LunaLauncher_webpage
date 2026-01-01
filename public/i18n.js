@@ -84,6 +84,9 @@ const i18n = {
         // Update HTML lang attribute
         document.documentElement.lang = this.currentLang;
 
+        // Update body data-lang attribute for CSS-based language switching
+        document.body.setAttribute('data-lang', this.currentLang);
+
         // Update meta description
         const metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc && this.translations.meta) {
@@ -135,6 +138,17 @@ const i18n = {
                     element.classList.remove('changed');
                 }, 300);
             }, delay + 200); // Change text after 200ms fade out
+        });
+
+        // Handle elements with data-i18n-lang attribute (show/hide based on language)
+        const langElements = document.querySelectorAll('[data-i18n-lang]');
+        langElements.forEach(element => {
+            const lang = element.getAttribute('data-i18n-lang');
+            if (lang === this.currentLang) {
+                element.style.display = '';
+            } else {
+                element.style.display = 'none';
+            }
         });
 
         // Update all elements with data-i18n-placeholder attribute

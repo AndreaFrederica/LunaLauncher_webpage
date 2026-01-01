@@ -31,10 +31,12 @@
     "instance_title": "Instance Isolation",
     "instance_desc": "Each instance has independent mods, resource packs, and settings. Prevents old versions from resetting settings or accidentally corrupting worlds.",
     "p2p_title": "P2P Multiplayer",
-    "p2p_desc": "Built-in support for <a href=\"https://github.com/burningtnt/Terracotta\" target=\"_blank\" rel=\"noopener noreferrer\">Terracotta</a> and <a href=\"https://github.com/ElicaseTech/YukariConnect\" target=\"_blank\" rel=\"noopener noreferrer\">YukariConnect</a> P2P multiplayer - play with friends without port forwarding or complex network setup. YukariConnect is intended as an alternative to the AGPL-licensed Terracotta.",
+    "p2p_desc": "Built-in support for {terracotta} and {yukariconnect} P2P multiplayer.",
+    "p2p_desc_more": "Play with friends without port forwarding or complex network setup. YukariConnect is intended as an alternative to the AGPL-licensed Terracotta.",
     "server_title": "Server Preview",
     "server_desc": "Quickly access server preview from the toolbar, view server status and player information in real-time, and connect to your favorite servers with one click.",
-    "server_mgmt_title": "Server Management <span class=\"badge\" style=\"font-size: 11px; margin-left: 8px;\">WIP</span>",
+    "server_mgmt_title": "Server Management",
+    "server_mgmt_badge": "WIP",
     "server_mgmt_desc": "Launch and manage servers directly from the launcher, making it easy to play with friends. Suitable for small servers and casual multiplayer sessions."
   },
   "get": {
@@ -54,6 +56,9 @@
     "feedback_desc": "Submit issues, feature requests, or UI suggestions to GitHub Issues, and include logs and reproduction steps when possible.",
     "contribute_title": "Contribute Code & Design",
     "contribute_desc": "Whether it's fixing a small bug or providing new icons and UI designs, all contributions are valuable."
+  },
+  "testimonials": {
+    "title": "User Reviews"
   },
   "footer": {
     "copyright": "© 2025-2026 Luna Launcher Project",
