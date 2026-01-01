@@ -93,9 +93,14 @@ const i18n = {
             metaDesc.content = this.translations.meta.description;
         }
 
-        // Update page title if available
-        if (this.translations.page && this.translations.page.title) {
-            document.title = this.translations.page.title;
+        // Update page title if the title element has data-i18n attribute
+        const titleElement = document.querySelector('title[data-i18n]');
+        if (titleElement) {
+            const key = titleElement.getAttribute('data-i18n');
+            const translation = this.getNestedTranslation(this.translations, key);
+            if (translation) {
+                document.title = translation;
+            }
         }
 
         // Update all elements with data-i18n attribute with staggered animation
