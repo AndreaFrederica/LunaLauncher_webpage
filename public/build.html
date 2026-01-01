@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page.title">构建指南 - Luna Launcher</title>
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Luna Launcher 构建指南">
+    <link rel="icon" type="image/png" href="resources/org.lunalauncher.LunaLauncher_256.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Page TOC Navigation -->
+        <aside class="page-toc" data-i18n-lang="zh-CN">
+            <div class="toc-header">目录</div>
+            <nav class="toc-nav">
+                <a href="#prerequisites" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">前置要求</span>
+                </a>
+                <a href="#get-source" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">获取源代码</span>
+                </a>
+                <div class="toc-group" data-section="windows">
+                    <a href="#windows" class="toc-item toc-parent">
+                        <span class="toc-dot"></span>
+                        <span class="toc-text">Windows 构建</span>
+                        <span class="toc-arrow"></span>
+                    </a>
+                    <div class="toc-submenu">
+                        <a href="#windows-msys2-auto" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">自动化：MSYS2</span>
+                        </a>
+                        <a href="#windows-msys2-manual" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">手动：MSYS2</span>
+                        </a>
+                        <a href="#windows-msvc-auto" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">自动化：Pixi</span>
+                        </a>
+                        <a href="#windows-msvc-manual" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">手动：MSVC</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="toc-group" data-section="linux">
+                    <a href="#linux" class="toc-item toc-parent">
+                        <span class="toc-dot"></span>
+                        <span class="toc-text">Linux 构建</span>
+                        <span class="toc-arrow"></span>
+                    </a>
+                    <div class="toc-submenu">
+                        <a href="#linux-prereq" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">构建依赖</span>
+                        </a>
+                        <a href="#linux-portable" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">便携版</span>
+                        </a>
+                        <a href="#linux-system" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">系统安装</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="toc-group" data-section="macos">
+                    <a href="#macos" class="toc-item toc-parent">
+                        <span class="toc-dot"></span>
+                        <span class="toc-text">macOS 构建</span>
+                        <span class="toc-arrow"></span>
+                    </a>
+                    <div class="toc-submenu">
+                        <a href="#macos-prereq" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">前置要求</span>
+                        </a>
+                        <a href="#macos-homebrew" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Homebrew</span>
+                        </a>
+                        <a href="#macos-build" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">构建</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#output" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">构建输出</span>
+                </a>
+                <a href="#upstream" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">上游参考</span>
+                </a>
+            </nav>
+            <div class="toc-progress">
+                <div class="toc-progress-bar"></div>
+            </div>
+        </aside>
+
+        <aside class="page-toc" data-i18n-lang="en-US">
+            <div class="toc-header">Contents</div>
+            <nav class="toc-nav">
+                <a href="#prerequisites" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">Prerequisites</span>
+                </a>
+                <a href="#get-source" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">Get the Source</span>
+                </a>
+                <div class="toc-group" data-section="windows">
+                    <a href="#windows" class="toc-item toc-parent">
+                        <span class="toc-dot"></span>
+                        <span class="toc-text">Building on Windows</span>
+                        <span class="toc-arrow"></span>
+                    </a>
+                    <div class="toc-submenu">
+                        <a href="#windows-msys2-auto" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Automated: MSYS2</span>
+                        </a>
+                        <a href="#windows-msys2-manual" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Manual: MSYS2</span>
+                        </a>
+                        <a href="#windows-msvc-auto" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Automated: Pixi</span>
+                        </a>
+                        <a href="#windows-msvc-manual" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Manual: MSVC</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="toc-group" data-section="linux">
+                    <a href="#linux" class="toc-item toc-parent">
+                        <span class="toc-dot"></span>
+                        <span class="toc-text">Building on Linux</span>
+                        <span class="toc-arrow"></span>
+                    </a>
+                    <div class="toc-submenu">
+                        <a href="#linux-prereq" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Dependencies</span>
+                        </a>
+                        <a href="#linux-portable" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Portable</span>
+                        </a>
+                        <a href="#linux-system" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">System Install</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="toc-group" data-section="macos">
+                    <a href="#macos" class="toc-item toc-parent">
+                        <span class="toc-dot"></span>
+                        <span class="toc-text">Building on macOS</span>
+                        <span class="toc-arrow"></span>
+                    </a>
+                    <div class="toc-submenu">
+                        <a href="#macos-prereq" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Prerequisites</span>
+                        </a>
+                        <a href="#macos-homebrew" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Homebrew</span>
+                        </a>
+                        <a href="#macos-build" class="toc-item toc-subitem">
+                            <span class="toc-dot"></span>
+                            <span class="toc-text">Build</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#output" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">Build Output</span>
+                </a>
+                <a href="#upstream" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">Upstream Reference</span>
+                </a>
+            </nav>
+            <div class="toc-progress">
+                <div class="toc-progress-bar"></div>
+            </div>
+        </aside>
+
+        <div class="topbar">
+            <a class="brand" href="index.html">
+                <img src="resources/org.lunalauncher.LunaLauncher_256.png" alt="Luna Launcher">
+                <strong>Luna Launcher</strong>
+            </a>
+            <nav class="nav" aria-label="导航">
+                <a href="index.html#features" data-i18n="nav.features">特性</a>
+                <a href="index.html#get" data-i18n="nav.get">获取</a>
+                <a href="#build" data-i18n="nav.build">构建</a>
+            </nav>
+            <div class="language-selector">
+                <button type="button" id="language-button" class="language-button" aria-label="切换语言" title="Switch Language">
+                    <svg class="language-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    <span class="current-lang">简体中文</span>
+                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div id="language-menu" class="language-menu">
+                    <button type="button" class="language-option" data-lang="zh-CN">简体中文</button>
+                    <button type="button" class="language-option" data-lang="en-US">English</button>
+                </div>
+            </div>
+        </div>
+
+        <main class="build-guide">
+            <h1 data-i18n="build.title">构建指南</h1>
+            <p class="lead" data-i18n="build.lead">本文介绍如何从源代码构建 Luna Launcher。</p>
+
+            <section class="build-section" id="prerequisites">
+                <h2 data-i18n="build.prerequisites.title">前置要求</h2>
+                <ul class="build-list">
+                    <li data-i18n="build.prerequisites.git">Git</li>
+                    <li data-i18n="build.prerequisites.java">Java Development Kit 8 或更高版本</li>
+                    <li data-i18n="build.prerequisites.cmake">CMake 3.16 或更高版本</li>
+                    <li data-i18n="build.prerequisites.qt">Qt 6 (推荐 6.6.2) 或 Qt 5 (推荐 5.15.2)</li>
+                </ul>
+            </section>
+
+            <section class="build-section" id="get-source">
+                <h2 data-i18n="build.get_source.title">获取源代码</h2>
+                <div class="code-block">
+                    <pre><code>git clone --recursive https://github.com/AndreaFrederica/LunaLauncher.git
+<span class="code-comment" data-i18n="build.get_source.comment1">cd LunaLauncher</span></code></pre>
+                </div>
+                <p class="note" data-i18n="build.get_source.note">注意：使用 --recursive 参数来克隆子模块（包含 website）。</p>
+            </section>
+
+            <section class="build-section" id="windows">
+                <h2 data-i18n="build.windows.title">Windows 构建</h2>
+
+                <h3 id="windows-msys2-auto" data-i18n="build.windows.msys2_auto.title">自动化构建：MSYS2 + GCC（推荐）</h3>
+
+                <h4 data-i18n="build.windows.msys2.m2m.title">使用 Msys2Manager (m2m)</h4>
+                <p data-i18n-html="build.windows.msys2.m2m.desc"><a href="https://github.com/AndreaFrederica/Msys2Manager/releases" target="_blank" rel="noopener noreferrer">Msys2Manager (m2m)</a> 是专门用于管理 MSYS2 环境的 CLI 工具。从 <a href="https://github.com/AndreaFrederica/Msys2Manager/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a> 下载最新版本并添加到 PATH。</p>
+                <div class="code-block">
+                    <pre><code><span class="code-comment" data-i18n="build.windows.msys2.m2m.comment1"># 设置 JAVA_HOME</span>
+$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-17.0.12.101-hotspot"
+
+<span class="code-comment" data-i18n="build.windows.msys2.m2m.comment2"># 引导安装 MSYS2（仅首次）</span>
+m2m bootstrap
+
+<span class="code-comment" data-i18n="build.windows.msys2.m2m.comment3"># 配置和构建</span>
+m2m run configure
+m2m run build
+
+<span class="code-comment" data-i18n="build.windows.msys2.m2m.comment4"># 安装</span>
+m2m run install</code></pre>
+                </div>
+
+                <h4 data-i18n="build.windows.msys2.ps.title">使用 PowerShell 脚本</h4>
+                <div class="code-block">
+                    <pre><code><span class="code-comment" data-i18n="build.windows.msys2.ps.comment1"># 设置 JAVA_HOME</span>
+$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-17.0.12.101-hotspot"
+
+<span class="code-comment" data-i18n="build.windows.msys2.ps.comment2"># 初始化 MSYS2 环境（仅首次）</span>
+.\tools\msys2\bootstrap.ps1
+
+<span class="code-comment" data-i18n="build.windows.msys2.ps.comment3"># 配置和构建</span>
+.\tools\msys2\run.ps1 configure
+.\tools\msys2\run.ps1 build
+
+<span class="code-comment" data-i18n="build.windows.msys2.ps.comment4"># 安装</span>
+.\tools\msys2\run.ps1 install</code></pre>
+                </div>
+
+                <hr class="build-divider">
+
+                <h3 id="windows-msys2-manual" data-i18n="build.windows.msys2_manual.title">手动构建：MSYS2 + GCC</h3>
+                <p data-i18n="build.windows.msys2_manual.desc">推荐使用 CLANG64 或 UCRT64 msystem，CLANG64 编译速度更快且 bug 更少。</p>
+
+                <h4 data-i18n="build.windows.msys2_manual.prereq.title">准备 MSYS2</h4>
+                <ol class="build-steps">
+                    <li data-i18n="build.windows.msys2_manual.prereq.step1">从开始菜单打开 MSYS2 快捷方式</li>
+                    <li data-i18n-html="build.windows.msys2_manual.prereq.step2">安装辅助工具：<code>pacman -Syu pactoys git mingw-w64-ucrt-x86_64-binutils</code></li>
+                    <li data-i18n-html="build.windows.msys2_manual.prereq.step3">使用 pacboy 安装构建依赖：<code>pacboy -S toolchain:p cmake:p ninja:p qt6-base:p qt6-5compat:p qt6-svg:p qt6-imageformats:p quazip-qt6:p extra-cmake-modules:p ccache:p</code></li>
+                    <li data-i18n-html="build.windows.msys2_manual.prereq.step4">或使用 Qt 5：<code>pacboy -S toolchain:p cmake:p ninja:p qt5-base:p qt5-svg:p qt5-imageformats:p quazip-qt5:p extra-cmake-modules:p ccache:p</code></li>
+                </ol>
+
+                <h4 data-i18n="build.windows.msys2_manual.compile.title">从命令行编译</h4>
+                <div class="code-block">
+                    <pre><code><span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment1"># 进入源代码目录</span>
+cd /path/to/LunaLauncher
+
+<span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment2"># 配置 CMake（Debug 构建）</span>
+cmake -Bbuild -DCMAKE_INSTALL_PREFIX=install -DENABLE_LTO=ON -DCMAKE_BUILD_TYPE=Debug -G Ninja
+
+<span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment3"># 构建</span>
+cmake --build build
+
+<span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment4"># 安装</span>
+cmake --install build
+
+<span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment5"># 便携版（数据存储在应用目录）</span>
+cmake --install build --component portable</code></pre>
+                </div>
+                <p class="note" data-i18n-html="build.windows.msys2_manual.note">注意：Qt 5 构建时需要手动复制 OpenSSL DLL：<code>cp /ucrt64/bin/libcrypto-1_1-x64.dll /ucrt64/bin/libssl-1_1-x64.dll install</code></p>
+
+                <hr class="build-divider">
+
+                <h3 id="windows-msvc-auto" data-i18n="build.windows.msvc_auto.title">自动化构建：Pixi + MSVC</h3>
+                <p data-i18n="build.windows.msvc_auto.desc">需要从 x64 Native Tools Command Prompt 运行。</p>
+                <div class="code-block">
+                    <pre><code><span class="code-comment" data-i18n="build.windows.msvc.comment1"># 安装依赖并配置</span>
+pixi run configure
+
+<span class="code-comment" data-i18n="build.windows.msvc.comment2"># 构建</span>
+pixi run build
+
+<span class="code-comment" data-i18n="build.windows.msvc.comment3"># 安装</span>
+pixi run install</code></pre>
+                </div>
+
+                <hr class="build-divider">
+
+                <h3 id="windows-msvc-manual" data-i18n="build.windows.msvc_manual.title">手动构建：MSVC</h3>
+
+                <h4 data-i18n="build.windows.msvc_manual.prereq.title">依赖项</h4>
+                <ul class="build-list">
+                    <li data-i18n="build.windows.msvc_manual.prereq.vs">Visual Studio - 从"x64 Native Tools Command Prompt"运行</li>
+                    <li data-i18n="build.windows.msvc_manual.prereq.java">Java Development Kit 8 或更高版本</li>
+                    <li data-i18n="build.windows.msvc_manual.prereq.qt">Qt 6.6.2 (推荐) 或 Qt 5.15.2</li>
+                </ul>
+
+                <h4 data-i18n="build.windows.msvc_manual.compile.title">从命令行编译</h4>
+                <div class="code-block">
+                    <pre><code><span class="code-comment" data-i18n="build.windows.msvc_manual.compile.comment1"># 配置 CMake（调整 Qt 路径）</span>
+cmake -Bbuild -DCMAKE_INSTALL_PREFIX=install -DENABLE_LTO=ON -DCMAKE_PREFIX_PATH=C:\Qt\6.6.2\msvc2019_64\lib\cmake
+
+<span class="code-comment" data-i18n="build.windows.msvc_manual.compile.comment2"># 构建（Debug）</span>
+cmake --build build --config Debug -- /p:UseMultiToolTask=true /p:EnforceProcessCountAcrossBuilds=true
+
+<span class="code-comment" data-i18n="build.windows.msvc_manual.compile.comment3"># 安装</span>
+cmake --install build --config Debug
+
+<span class="code-comment" data-i18n="build.windows.msvc_manual.compile.comment4"># 便携版</span>
+cmake --install build --config Debug --component portable</code></pre>
+                </div>
+                <p class="note" data-i18n-html="build.windows.msvc_manual.note">注意：Qt 5 构建时需要手动复制 OpenSSL DLL：<code>robocopy C:\Qt\Tools\OpenSSL\Win_x64\bin\ install libcrypto-1_1-x64.dll libssl-1_1-x64.dll</code></p>
+            </section>
+
+            <section class="build-section" id="linux">
+                <h2 data-i18n="build.linux.title">Linux 构建</h2>
+
+                <h3 id="linux-prereq" data-i18n="build.linux.prereq.title">构建依赖</h3>
+                <ul class="build-list">
+                    <li data-i18n-html="build.linux.prereq.compiler">支持 C++17 的 C++ 编译器</li>
+                    <li data-i18n-html="build.linux.prereq.qt">Qt 6.0+ 或 Qt 5.12+ (<code>qt6-base-dev qt6-5compat-dev</code> 或 <code>qtbase5-dev</code>)</li>
+                    <li data-i18n-html="build.linux.prereq.cmake">cmake 3.15+ (<code>cmake</code>)</li>
+                    <li data-i18n-html="build.linux.prereq.ninja">ninja (<code>ninja-build</code>)</li>
+                    <li data-i18n-html="build.linux.prereq.ecm">extra-cmake-modules</li>
+                    <li data-i18n-html="build.linux.prereq.zlib">zlib (<code>zlib1g-dev</code>)</li>
+                    <li data-i18n-html="build.linux.prereq.java">Java JDK (<code>openjdk-17-jdk</code>)</li>
+                    <li data-i18n-html="build.linux.prereq.gl">GL 头文件 (<code>libgl1-mesa-dev</code>)</li>
+                </ul>
+
+                <h3 id="linux-portable" data-i18n="build.linux.portable.title">构建便携版</h3>
+                <div class="code-block">
+                    <pre><code>cmake -S . -B build -G Ninja \
+   -DCMAKE_INSTALL_PREFIX=install
+cmake --build build
+cmake --install build
+cmake --install build --component portable</code></pre>
+                </div>
+
+                <h3 id="linux-system" data-i18n="build.linux.system.title">构建并安装到系统</h3>
+                <div class="code-block">
+                    <pre><code>cmake -S . -B build -G Ninja \
+   -DCMAKE_BUILD_TYPE=Release \
+   -DCMAKE_INSTALL_PREFIX="/usr" \
+   -DENABLE_LTO=ON
+cmake --build build
+cmake --install build</code></pre>
+                </div>
+                <p class="note" data-i18n-html="build.linux.system_note">构建 Linux 软件包时使用 <code>/usr</code>，个人构建使用 <code>/usr/local</code>。</p>
+            </section>
+
+            <section class="build-section" id="macos">
+                <h2 data-i18n="build.macos.title">macOS 构建</h2>
+
+                <h3 id="macos-prereq" data-i18n="build.macos.prereq.title">安装前置要求</h3>
+                <ul class="build-list">
+                    <li data-i18n-html="build.macos.prereq.xcode">XCode Command Line tools：<code>xcode-select --install</code></li>
+                    <li data-i18n-html="build.macos.prereq.cmake">CMake：<a href="https://cmake.org/download/" target="_blank" rel="noopener noreferrer">cmake.org</a></li>
+                    <li data-i18n="build.macos.prereq.ecm">extra-cmake-modules</li>
+                    <li data-i18n-html="build.macos.prereq.java">JDK 8：<a href="https://adoptium.net/" target="_blank" rel="noopener noreferrer">Adoptium</a></li>
+                    <li data-i18n="build.macos.prereq.qt">Qt 6 (推荐) 或 Qt 5.12+</li>
+                </ul>
+
+                <h4 id="macos-homebrew" data-i18n="build.macos.homebrew.title">使用 Homebrew 安装</h4>
+                <div class="code-block">
+                    <pre><code>brew update
+brew install qt openjdk@17 cmake ninja extra-cmake-modules
+# 使用 qt@5 安装 Qt 5</code></pre>
+                </div>
+
+                <h3 id="macos-build" data-i18n="build.macos.build.title">构建</h3>
+                <div class="code-block">
+                    <pre><code>mkdir build
+cmake \
+  -S . \
+  -B build \
+  -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX="dist" \
+  -DCMAKE_PREFIX_PATH="/opt/homebrew/opt/qt" \
+  -DCMAKE_OSX_DEPLOYMENT_TARGET=11 \
+  -DLauncher_QT_VERSION_MAJOR=6 \
+  -DENABLE_LTO=ON \
+  -DLauncher_BUILD_PLATFORM=macOS
+cmake --build build
+cmake --install build</code></pre>
+                </div>
+                <p class="note" data-i18n-html="build.macos.sign_note">注意：最终应用包可能由于代码签名问题无法运行，需要使用 <code>codesign -fs -</code> 修复。</p>
+            </section>
+
+            <section class="build-section" id="output">
+                <h2 data-i18n="build.output.title">构建输出</h2>
+                <ul class="build-list">
+                    <li data-i18n-html="build.output.install">标准构建：install/ 目录</li>
+                    <li data-i18n-html="build.output.portable">便携版：使用 --component portable 参数</li>
+                </ul>
+            </section>
+
+            <section class="build-section" id="upstream">
+                <h2 data-i18n="build.upstream.title">上游参考</h2>
+                <p data-i18n="build.upstream.desc">Luna Launcher 基于 Prism Launcher，更详细的构建说明可以参考上游文档：</p>
+                <ul class="build-list">
+                    <li><a href="https://prismlauncher.org/wiki/development/build-instructions/windows/" target="_blank" rel="noopener noreferrer" data-i18n="build.upstream.windows">Windows 构建说明</a></li>
+                    <li><a href="https://prismlauncher.org/wiki/development/build-instructions/linux/" target="_blank" rel="noopener noreferrer" data-i18n="build.upstream.linux">Linux 构建说明</a></li>
+                    <li><a href="https://prismlauncher.org/wiki/development/build-instructions/macos/" target="_blank" rel="noopener noreferrer" data-i18n="build.upstream.macos">macOS 构建说明</a></li>
+                </ul>
+            </section>
+
+            <div class="cta-row" style="margin-top: 40px;">
+                <a class="btn" href="index.html" data-i18n="build.back">返回首页</a>
+                <a class="btn primary" href="https://github.com/AndreaFrederica/LunaLauncher/issues" target="_blank" rel="noopener noreferrer" data-i18n="build.help">需要帮助？</a>
+            </div>
+        </main>
+
+        <footer style="margin-top: 60px;">
+            <div class="footer-row">
+                <div data-i18n="footer.copyright">© 2025-2026 Luna Launcher Project</div>
+                <div class="footer-links">
+                    <a href="index.html" data-i18n="footer.home">首页</a>
+                    <a href="https://github.com/AndreaFrederica/LunaLauncher" target="_blank" rel="noopener noreferrer" data-i18n="footer.github">GitHub</a>
+                    <a href="https://github.com/AndreaFrederica/LunaLauncher/issues" target="_blank" rel="noopener noreferrer" data-i18n="footer.issues">Issues</a>
+                </div>
+            </div>
+            <div class="footer-disclaimer" data-i18n="footer.disclaimer">Luna Launcher 是一个独立的 Prism Launcher 分支项目,不隶属于、也不代表 Prism Launcher 项目。</div>
+        </footer>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script>
+        // TOC Navigation - Scroll spy and active state
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocItems = document.querySelectorAll('.toc-item');
+            const tocGroups = document.querySelectorAll('.toc-group');
+            const sections = document.querySelectorAll('.build-section[id], .build-section h3[id], .build-section h4[id]');
+            const progressBar = document.querySelector('.toc-progress-bar');
+
+            function updateActiveToc() {
+                const scrollPos = window.scrollY + 100;
+
+                let currentSection = '';
+                let currentSubSection = '';
+                let minDistance = Infinity;
+
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const sectionTop = rect.top + window.scrollY;
+                    const sectionId = section.getAttribute('id');
+
+                    // Find the closest section to the scroll position
+                    const distance = Math.abs(sectionTop - scrollPos);
+                    if (sectionTop <= scrollPos && distance < minDistance) {
+                        minDistance = distance;
+
+                        // Check if it's a subsection (h3 or h4)
+                        if (section.tagName === 'H3' || section.tagName === 'H4') {
+                            currentSubSection = sectionId;
+                            // Get parent section
+                            const parentSection = section.closest('.build-section');
+                            if (parentSection) {
+                                currentSection = parentSection.getAttribute('id');
+                            }
+                        } else {
+                            currentSection = sectionId;
+                            currentSubSection = '';
+                        }
+                    }
+                });
+
+                // Update active states
+                tocItems.forEach(item => {
+                    item.classList.remove('active');
+                    const href = item.getAttribute('href');
+                    if (href === '#' + currentSection || href === '#' + currentSubSection) {
+                        item.classList.add('active');
+                    }
+                });
+
+                // Auto-expand Windows section when scrolling to its subsections
+                tocGroups.forEach(group => {
+                    const sectionName = group.getAttribute('data-section');
+                    const parentItem = group.querySelector('.toc-parent');
+
+                    if (sectionName === currentSection ||
+                        (currentSubSection && currentSubSection.startsWith(sectionName))) {
+                        group.classList.add('expanded');
+                        parentItem?.classList.add('active');
+                    } else {
+                        group.classList.remove('expanded');
+                        parentItem?.classList.remove('active');
+                    }
+                });
+
+                // Update progress bar
+                if (progressBar) {
+                    const windowHeight = window.innerHeight;
+                    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                    const scrolled = (window.scrollY / documentHeight) * 100;
+                    progressBar.style.height = scrolled + '%';
+                }
+            }
+
+            // Throttled scroll handler
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateActiveToc();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            // Initial call
+            updateActiveToc();
+
+            // Smooth scroll for TOC links
+            tocItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop - 20;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Toggle submenu on parent click
+            document.querySelectorAll('.toc-parent').forEach(parent => {
+                parent.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const group = this.closest('.toc-group');
+                    if (group) {
+                        group.classList.toggle('expanded');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

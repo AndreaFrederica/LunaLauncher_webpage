@@ -93,6 +93,11 @@ const i18n = {
             metaDesc.content = this.translations.meta.description;
         }
 
+        // Update page title if available
+        if (this.translations.page && this.translations.page.title) {
+            document.title = this.translations.page.title;
+        }
+
         // Update all elements with data-i18n attribute with staggered animation
         const elements = Array.from(document.querySelectorAll('[data-i18n]'));
         console.log('Found', elements.length, 'elements to translate'); // Debug log
@@ -148,6 +153,16 @@ const i18n = {
                 element.style.display = '';
             } else {
                 element.style.display = 'none';
+            }
+        });
+
+        // Update all elements with data-i18n-html attribute (HTML content support)
+        const htmlElements = document.querySelectorAll('[data-i18n-html]');
+        htmlElements.forEach(element => {
+            const key = element.getAttribute('data-i18n-html');
+            const translation = this.getNestedTranslation(this.translations, key);
+            if (translation) {
+                element.innerHTML = translation;
             }
         });
 

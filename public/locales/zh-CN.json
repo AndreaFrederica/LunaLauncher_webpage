@@ -6,7 +6,11 @@
   "nav": {
     "features": "特性",
     "get": "获取",
-    "community": "参与"
+    "community": "参与",
+    "build": "构建"
+  },
+  "page": {
+    "title": "构建指南 - Luna Launcher"
   },
   "hero": {
     "title": "轻量、整洁、可定制的 Minecraft 启动器",
@@ -60,8 +64,152 @@
   "testimonials": {
     "title": "用户评价"
   },
+  "build": {
+    "title": "构建指南",
+    "lead": "本文介绍如何从源代码构建 Luna Launcher。",
+    "prerequisites": {
+      "title": "前置要求",
+      "git": "Git",
+      "java": "Java Development Kit 8 或更高版本",
+      "cmake": "CMake 3.16 或更高版本",
+      "qt": "Qt 6 (推荐 6.6.2) 或 Qt 5 (推荐 5.15.2)"
+    },
+    "get_source": {
+      "title": "获取源代码",
+      "comment1": "cd LunaLauncher",
+      "note": "注意：使用 --recursive 参数来克隆子模块（包含 website）。"
+    },
+    "windows": {
+      "title": "Windows 构建",
+      "msys2_auto": {
+        "title": "自动化构建：MSYS2 + GCC（推荐）",
+        "desc": "使用 MSYS2 的 UCRT64 GCC 工具链，通过自动化脚本构建。"
+      },
+      "msys2": {
+        "title": "选项 A：MSYS2 + GCC（推荐）",
+        "desc": "使用 MSYS2 的 UCRT64 GCC 工具链，通过自动化脚本构建。",
+        "m2m": {
+          "title": "使用 Msys2Manager (m2m)",
+          "desc": "<a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">Msys2Manager (m2m)</a> 是专门用于管理 MSYS2 环境的 CLI 工具。从 <a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub Releases</a> 下载最新版本并添加到 PATH。",
+          "comment1": "# 设置 JAVA_HOME",
+          "comment2": "# 引导安装 MSYS2（仅首次）",
+          "comment3": "# 配置和构建",
+          "comment4": "# 安装"
+        },
+        "ps": {
+          "title": "使用 PowerShell 脚本",
+          "comment1": "# 设置 JAVA_HOME",
+          "comment2": "# 初始化 MSYS2 环境（仅首次）",
+          "comment3": "# 配置和构建",
+          "comment4": "# 安装"
+        }
+      },
+      "msys2_manual": {
+        "title": "手动构建：MSYS2 + GCC",
+        "desc": "推荐使用 CLANG64 或 UCRT64 msystem，CLANG64 编译速度更快且 bug 更少。",
+        "prereq": {
+          "title": "准备 MSYS2",
+          "step1": "从开始菜单打开 MSYS2 快捷方式",
+          "step2": "安装辅助工具：<code>pacman -Syu pactoys git mingw-w64-ucrt-x86_64-binutils</code>",
+          "step3": "使用 pacboy 安装构建依赖：<code>pacboy -S toolchain:p cmake:p ninja:p qt6-base:p qt6-5compat:p qt6-svg:p qt6-imageformats:p quazip-qt6:p extra-cmake-modules:p ccache:p</code>",
+          "step4": "或使用 Qt 5：<code>pacboy -S toolchain:p cmake:p ninja:p qt5-base:p qt5-svg:p qt5-imageformats:p quazip-qt5:p extra-cmake-modules:p ccache:p</code>"
+        },
+        "compile": {
+          "title": "从命令行编译",
+          "comment1": "# 进入源代码目录",
+          "comment2": "# 配置 CMake（Debug 构建）",
+          "comment3": "# 构建",
+          "comment4": "# 安装",
+          "comment5": "# 便携版（数据存储在应用目录）"
+        },
+        "note": "注意：Qt 5 构建时需要手动复制 OpenSSL DLL：<code>cp /ucrt64/bin/libcrypto-1_1-x64.dll /ucrt64/bin/libssl-1_1-x64.dll install</code>"
+      },
+      "msvc_auto": {
+        "title": "自动化构建：Pixi + MSVC",
+        "desc": "需要从 x64 Native Tools Command Prompt 运行。"
+      },
+      "msvc": {
+        "title": "选项 B：Pixi + MSVC",
+        "desc": "使用 Pixi 配合 MSVC 工具链。需要从 x64 Native Tools Command Prompt 运行。",
+        "comment1": "# 安装依赖并配置",
+        "comment2": "# 构建",
+        "comment3": "# 安装"
+      },
+      "msvc_manual": {
+        "title": "手动构建：MSVC",
+        "prereq": {
+          "title": "依赖项",
+          "vs": "Visual Studio - 从\"x64 Native Tools Command Prompt\"运行",
+          "java": "Java Development Kit 8 或更高版本",
+          "qt": "Qt 6.6.2 (推荐) 或 Qt 5.15.2"
+        },
+        "compile": {
+          "title": "从命令行编译",
+          "comment1": "# 配置 CMake（调整 Qt 路径）",
+          "comment2": "# 构建（Debug）",
+          "comment3": "# 安装",
+          "comment4": "# 便携版"
+        },
+        "note": "注意：Qt 5 构建时需要手动复制 OpenSSL DLL：<code>robocopy C:\\Qt\\Tools\\OpenSSL\\Win_x64\\bin\\ install libcrypto-1_1-x64.dll libssl-1_1-x64.dll</code>"
+      }
+    },
+    "linux": {
+      "title": "Linux 构建",
+      "prereq": {
+        "title": "构建依赖",
+        "compiler": "支持 C++17 的 C++ 编译器",
+        "qt": "Qt 6.0+ 或 Qt 5.12+ (<code>qt6-base-dev qt6-5compat-dev</code> 或 <code>qtbase5-dev</code>)",
+        "cmake": "cmake 3.15+ (<code>cmake</code>)",
+        "ninja": "ninja (<code>ninja-build</code>)",
+        "ecm": "extra-cmake-modules",
+        "zlib": "zlib (<code>zlib1g-dev</code>)",
+        "java": "Java JDK (<code>openjdk-17-jdk</code>)",
+        "gl": "GL 头文件 (<code>libgl1-mesa-dev</code>)"
+      },
+      "portable": {
+        "title": "构建便携版"
+      },
+      "system": {
+        "title": "构建并安装到系统"
+      },
+      "system_note": "构建 Linux 软件包时使用 <code>/usr</code>，个人构建使用 <code>/usr/local</code>。"
+    },
+    "macos": {
+      "title": "macOS 构建",
+      "prereq": {
+        "title": "安装前置要求",
+        "xcode": "XCode Command Line tools：<code>xcode-select --install</code>",
+        "cmake": "CMake：<a href=\"https://cmake.org/download/\" target=\"_blank\" rel=\"noopener noreferrer\">cmake.org</a>",
+        "ecm": "extra-cmake-modules",
+        "java": "JDK 8：<a href=\"https://adoptium.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Adoptium</a>",
+        "qt": "Qt 6 (推荐) 或 Qt 5.12+"
+      },
+      "homebrew": {
+        "title": "使用 Homebrew 安装"
+      },
+      "build": {
+        "title": "构建"
+      },
+      "sign_note": "注意：最终应用包可能由于代码签名问题无法运行，需要使用 <code>codesign -fs -</code> 修复。"
+    },
+    "output": {
+      "title": "构建输出",
+      "install": "标准构建：<code>install/</code> 目录",
+      "portable": "便携版：使用 <code>--component portable</code> 参数"
+    },
+    "upstream": {
+      "title": "上游参考",
+      "desc": "Luna Launcher 基于 Prism Launcher，更详细的构建说明可以参考上游文档：",
+      "windows": "Windows 构建说明",
+      "linux": "Linux 构建说明",
+      "macos": "macOS 构建说明"
+    },
+    "back": "返回首页",
+    "help": "需要帮助？"
+  },
   "footer": {
     "copyright": "© 2025-2026 Luna Launcher Project",
+    "home": "首页",
     "github": "GitHub",
     "releases": "Releases",
     "issues": "Issues",
