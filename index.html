@@ -1,106 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luna Launcher</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background-color: #f8f9fa;
-            margin-bottom: 40px;
-            border-radius: 8px;
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        .hero-text {
-            font-size: 1.2em;
-            color: #666;
-        }
-        section {
-            margin-bottom: 40px;
-        }
-        h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .feature-card {
-            border: 1px solid #eee;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #888;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Luna Launcher：专注自由与整洁的 Minecraft 启动器。">
+    <link rel="icon" type="image/png" href="resources/org.lunalauncher.LunaLauncher_256.png">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Luna Launcher</h1>
-        <p class="hero-text">A custom Minecraft launcher focused on user freedom and flexibility.</p>
-    </header>
-
-    <main>
-        <section id="features">
-            <h2>Features</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <h3>Modpack Management</h3>
-                    <p>Install and launch modpacks easily. Automatically handle dependencies and updates for a seamless experience.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Instance Management</h3>
-                    <p>Keep your Minecraft instances separate. Each instance has its own mods, resource packs, and settings.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Lightweight</h3>
-                    <p>Built with performance in mind. Uses minimal system resources so you can focus on playing the game.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Cross-Platform</h3>
-                    <p>Works on Windows, macOS, and Linux. Bring your Minecraft experience to any device.</p>
+    <div class="container">
+        <div class="topbar">
+            <a class="brand" href="#top">
+                <img src="resources/org.lunalauncher.LunaLauncher_256.png" alt="Luna Launcher">
+                <strong>Luna Launcher</strong>
+            </a>
+            <nav class="nav" aria-label="导航">
+                <a href="#features" data-i18n="nav.features">特性</a>
+                <a href="#get" data-i18n="nav.get">获取</a>
+                <a href="#community" data-i18n="nav.community">参与</a>
+            </nav>
+            <div class="language-selector">
+                <button type="button" id="language-button" class="language-button" aria-label="切换语言" title="Switch Language">
+                    <svg class="language-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    <span class="current-lang">简体中文</span>
+                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div id="language-menu" class="language-menu">
+                    <button type="button" class="language-option" data-lang="zh-CN">简体中文</button>
+                    <button type="button" class="language-option" data-lang="en-US">English</button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="about">
-            <h2>About</h2>
-            <p>Luna Launcher is a fork of <a href="https://prismlauncher.org/">Prism Launcher</a>, designed to provide a customized launching experience.</p>
-        </section>
-    </main>
+        <header id="top" class="hero">
+            <div class="hero-inner">
+                <div>
+                    <h1 data-i18n="hero.title">轻量、整洁、可定制的 Minecraft 启动器</h1>
+                    <p data-i18n="hero.description">以实例隔离为核心,专注"用起来更省心":管理整包、更新资源、保持每个世界与配置互不干扰。</p>
+                    <div class="cta-row">
+                        <a class="btn primary" href="#get" data-i18n="hero.cta_get">获取与使用</a>
+                        <a class="btn" href="https://github.com/AndreaFrederica/LunaLauncher/releases" target="_blank" rel="noopener noreferrer" data-i18n="hero.cta_releases">Releases</a>
+                        <a class="btn" href="https://github.com/AndreaFrederica/LunaLauncher" target="_blank" rel="noopener noreferrer" data-i18n="hero.cta_github">GitHub</a>
+                        <a class="btn" href="https://prismlauncher.org/" target="_blank" rel="noreferrer" data-i18n="hero.cta_prism">参考 Prism Launcher</a>
+                    </div>
+                    <div class="hero-badges" aria-label="标签">
+                        <span class="badge" data-i18n="hero.badge_instance">实例隔离</span>
+                        <span class="badge" data-i18n="hero.badge_modpack">整包管理</span>
+                        <span class="badge" data-i18n="hero.badge_p2p">P2P 联机</span>
+                        <span class="badge" data-i18n="hero.badge_fluent">Fluent 主题</span>
+                    </div>
+                    <div class="notice" data-i18n="hero.notice">当前处于早期版本:可能需要自行构建,或联系开发者获取测试版本。</div>
+                </div>
+                <div class="hero-art">
+                    <img src="resources/luna_home.png" alt="Luna Launcher 界面预览">
+                </div>
+            </div>
+        </header>
 
-    <footer>
-        <p>&copy; 2024 Luna Launcher Project. Based on Prism Launcher.</p>
-        <p>Source code available on <a href="https://github.com/AndreaFrederica/LunaLauncher_webpage">GitHub</a>.</p>
-    </footer>
+        <main>
+            <section id="features" class="section">
+                <h2 data-i18n="features.title">特性</h2>
+                <p class="lead" data-i18n="features.lead">参考 Prism Launcher 的使用体验,把常见的"安装、维护、切版本"流程做得更省心。</p>
+                <div class="feature-blocks">
+                    <div class="feature-row">
+                        <div class="feature-text">
+                            <h2 data-i18n="features.modpack_title">整包管理</h2>
+                            <p data-i18n="features.modpack_desc">更轻松地安装与启动整包,同时保持实例目录整洁。减少手动安装、更新与排障的重复劳动。</p>
+                        </div>
+                    </div>
+                    <div class="feature-row reverse">
+                        <div class="feature-text">
+                            <h2 data-i18n="features.download_title">下载与镜像加速</h2>
+                            <p data-i18n="features.download_desc">支持社区镜像 API(例如 BMCLAPI),让在国内网络环境下的下载更顺畅。BMCLAPI 支持仍在完善,部分场景可能不可用。</p>
+                        </div>
+                    </div>
+                    <div class="feature-row">
+                        <div class="feature-text">
+                            <h2 data-i18n="features.instance_title">实例隔离</h2>
+                            <p data-i18n="features.instance_desc">每个实例都有独立的 mods、资源包与设置。避免旧版本启动导致设置重置或误操作破坏世界。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="get" class="section">
+                <h2 data-i18n="get.title">获取与使用</h2>
+                <p class="lead" data-i18n="get.lead">当前处于早期版本阶段:可能没有稳定安装包,面向开发者与早期测试者。</p>
+                <div class="split">
+                    <div class="panel">
+                        <p data-i18n="get.panel_build">推荐方式:按照构建指南自行编译运行。也可以在 Releases 查看是否提供预览构建。</p>
+                    </div>
+                    <div class="panel">
+                        <p data-i18n="get.panel_contact">如果你需要测试版本或遇到问题,欢迎通过 Issues 联系开发者。</p>
+                    </div>
+                </div>
+                <div class="cta-row cta-row-margin">
+                    <a class="btn primary" href="https://github.com/AndreaFrederica/LunaLauncher#building" target="_blank" rel="noopener noreferrer" data-i18n="get.btn_build">构建指南</a>
+                    <a class="btn" href="https://github.com/AndreaFrederica/LunaLauncher/releases" target="_blank" rel="noopener noreferrer" data-i18n="get.btn_releases">查看 Releases</a>
+                    <a class="btn" href="https://github.com/AndreaFrederica/LunaLauncher/issues" target="_blank" rel="noopener noreferrer" data-i18n="get.btn_issues">联系开发者</a>
+                </div>
+                <div class="notice" data-i18n="get.notice">提示:镜像 API(含 BMCLAPI)支持仍在完善;如果你遇到下载异常,请优先反馈问题以便我们改进。</div>
+            </section>
+
+            <section id="community" class="section">
+                <h2 data-i18n="community.title">参与</h2>
+                <p class="lead" data-i18n="community.lead">我们会认真阅读每一条反馈,也欢迎一起参与开发。</p>
+                <div class="grid">
+                    <div class="card">
+                        <h3 data-i18n="community.feedback_title">提交反馈</h3>
+                        <p data-i18n="community.feedback_desc">把你遇到的问题、想要的功能、或界面建议提交到 GitHub Issues,并尽量附上日志与复现步骤。</p>
+                    </div>
+                    <div class="card">
+                        <h3 data-i18n="community.contribute_title">贡献代码与设计</h3>
+                        <p data-i18n="community.contribute_desc">无论是改一个小 bug,还是提供新图标与界面稿,都很有价值。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-row">
+                <div data-i18n="footer.copyright">© 2025-2026 Luna Launcher Project</div>
+                <div class="footer-links">
+                    <a href="https://github.com/AndreaFrederica/LunaLauncher" target="_blank" rel="noopener noreferrer" data-i18n="footer.github">GitHub</a>
+                    <a href="https://github.com/AndreaFrederica/LunaLauncher/releases" target="_blank" rel="noopener noreferrer" data-i18n="footer.releases">Releases</a>
+                    <a href="https://github.com/AndreaFrederica/LunaLauncher/issues" target="_blank" rel="noopener noreferrer" data-i18n="footer.issues">Issues</a>
+                </div>
+            </div>
+            <div class="footer-disclaimer" data-i18n="footer.disclaimer">Luna Launcher 是一个独立的 Prism Launcher 分支项目,不隶属于、也不代表 Prism Launcher 项目。</div>
+        </footer>
+    </div>
+
+    <script src="i18n.js"></script>
 </body>
 </html>

@@ -1,0 +1,3 @@
+# Cloudflare Pages 配置（纯静态）
+name = "luna-launcher-site"
+# pages_build_output_dir = ""

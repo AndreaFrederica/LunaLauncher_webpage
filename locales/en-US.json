@@ -1,0 +1,62 @@
+{
+  "lang": "en-US",
+  "meta": {
+    "description": "Luna Launcher: A lightweight, clean, and customizable Minecraft launcher focused on freedom and organization."
+  },
+  "nav": {
+    "features": "Features",
+    "get": "Get",
+    "community": "Community"
+  },
+  "hero": {
+    "title": "Lightweight, Clean, and Customizable Minecraft Launcher",
+    "description": "Focused on instance isolation and making it easier to use: manage modpacks, update resources, and keep each world and configuration separate.",
+    "cta_get": "Get Started",
+    "cta_releases": "Releases",
+    "cta_github": "GitHub",
+    "cta_prism": "Based on Prism Launcher",
+    "badge_instance": "Instance Isolation",
+    "badge_modpack": "Modpack Management",
+    "badge_p2p": "P2P Multiplayer",
+    "badge_fluent": "Fluent Design",
+    "notice": "Early version: You may need to build it yourself or contact the developer for a test version."
+  },
+  "features": {
+    "title": "Features",
+    "lead": "Building on the Prism Launcher experience, making common tasks like installation, maintenance, and version switching easier.",
+    "modpack_title": "Modpack Management",
+    "modpack_desc": "Easily install and launch modpacks while keeping your instance directory clean. Reduce repetitive manual installation, update, and troubleshooting work.",
+    "download_title": "Download & Mirror Acceleration",
+    "download_desc": "Supports community mirror APIs (like BMCLAPI) for smoother downloads in China's network environment. BMCLAPI support is still being refined and may not be available in all scenarios.",
+    "instance_title": "Instance Isolation",
+    "instance_desc": "Each instance has independent mods, resource packs, and settings. Prevents old versions from resetting settings or accidentally corrupting worlds."
+  },
+  "get": {
+    "title": "Get Started",
+    "lead": "Currently in early development: stable installation packages may not be available yet. Targeted at developers and early testers.",
+    "panel_build": "Recommended: Build and run it yourself following the build guide. You can also check Releases for preview builds.",
+    "panel_contact": "If you need a test version or encounter issues, feel free to contact the developer through Issues.",
+    "btn_build": "Build Guide",
+    "btn_releases": "View Releases",
+    "btn_issues": "Contact Developer",
+    "notice": "Note: Mirror API support (including BMCLAPI) is still being improved. If you encounter download issues, please provide feedback so we can improve."
+  },
+  "community": {
+    "title": "Community",
+    "lead": "We carefully read every piece of feedback and welcome contributions to development.",
+    "feedback_title": "Submit Feedback",
+    "feedback_desc": "Submit issues, feature requests, or UI suggestions to GitHub Issues, and include logs and reproduction steps when possible.",
+    "contribute_title": "Contribute Code & Design",
+    "contribute_desc": "Whether it's fixing a small bug or providing new icons and UI designs, all contributions are valuable."
+  },
+  "footer": {
+    "copyright": "© 2025-2026 Luna Launcher Project",
+    "github": "GitHub",
+    "releases": "Releases",
+    "issues": "Issues",
+    "disclaimer": "Luna Launcher is an independent fork of Prism Launcher and is not affiliated with or endorsed by the Prism Launcher project."
+  },
+  "language": {
+    "select": "Select Language"
+  }
+}
