@@ -29,7 +29,13 @@
     "download_title": "Download & Mirror Acceleration",
     "download_desc": "Supports community mirror APIs (like BMCLAPI) for smoother downloads in China's network environment. BMCLAPI support is still being refined and may not be available in all scenarios.",
     "instance_title": "Instance Isolation",
-    "instance_desc": "Each instance has independent mods, resource packs, and settings. Prevents old versions from resetting settings or accidentally corrupting worlds."
+    "instance_desc": "Each instance has independent mods, resource packs, and settings. Prevents old versions from resetting settings or accidentally corrupting worlds.",
+    "p2p_title": "P2P Multiplayer",
+    "p2p_desc": "Built-in support for <a href=\"https://github.com/burningtnt/Terracotta\" target=\"_blank\" rel=\"noopener noreferrer\">Terracotta</a> and <a href=\"https://github.com/ElicaseTech/YukariConnect\" target=\"_blank\" rel=\"noopener noreferrer\">YukariConnect</a> P2P multiplayer - play with friends without port forwarding or complex network setup. YukariConnect is intended as an alternative to the AGPL-licensed Terracotta.",
+    "server_title": "Server Preview",
+    "server_desc": "Quickly access server preview from the toolbar, view server status and player information in real-time, and connect to your favorite servers with one click.",
+    "server_mgmt_title": "Server Management <span class=\"badge\" style=\"font-size: 11px; margin-left: 8px;\">WIP</span>",
+    "server_mgmt_desc": "Launch and manage servers directly from the launcher, making it easy to play with friends. Suitable for small servers and casual multiplayer sessions."
   },
   "get": {
     "title": "Get Started",

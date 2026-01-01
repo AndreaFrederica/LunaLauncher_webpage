@@ -29,7 +29,13 @@
     "download_title": "下载与镜像加速",
     "download_desc": "支持社区镜像 API(例如 BMCLAPI),让在国内网络环境下的下载更顺畅。BMCLAPI 支持仍在完善,部分场景可能不可用。",
     "instance_title": "实例隔离",
-    "instance_desc": "每个实例都有独立的 mods、资源包与设置。避免旧版本启动导致设置重置或误操作破坏世界。"
+    "instance_desc": "每个实例都有独立的 mods、资源包与设置。避免旧版本启动导致设置重置或误操作破坏世界。",
+    "p2p_title": "P2P 联机",
+    "p2p_desc": "内置支持 <a href=\"https://github.com/burningtnt/Terracotta\" target=\"_blank\" rel=\"noopener noreferrer\">Terracotta</a> 和 <a href=\"https://github.com/ElicaseTech/YukariConnect\" target=\"_blank\" rel=\"noopener noreferrer\">YukariConnect</a> P2P 联机功能。无需端口映射或复杂的网络配置即可与朋友一起游戏。YukariConnect 旨在作为 AGPL 许可的 Terracotta 的替代实现。",
+    "server_title": "服务器预览",
+    "server_desc": "从工具栏快速进入服务器预览，实时查看服务器状态和玩家信息，一键连接到常玩的服务器。",
+    "server_mgmt_title": "服务端管理 <span class=\"badge\" style=\"font-size: 11px; margin-left: 8px;\">开发中</span>",
+    "server_mgmt_desc": "让启动器也能启动服务端，方便与朋友进行多人游戏。适合小型服务器和临时联机场景。"
   },
   "get": {
     "title": "获取与使用",
