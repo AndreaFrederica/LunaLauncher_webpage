@@ -319,14 +319,20 @@ cmake --install build --component portable</code></pre>
                 <hr class="build-divider">
 
                 <h3 id="windows-msvc-auto" data-i18n="build.windows.msvc_auto.title">自动化构建：Pixi + MSVC</h3>
-                <p data-i18n="build.windows.msvc_auto.desc">需要从 x64 Native Tools Command Prompt 运行。</p>
+                <p data-i18n="build.windows.msvc_auto.desc">仅需 MSVC，建议从 x64 Native Tools Command Prompt 运行。</p>
                 <div class="code-block">
                     <button type="button" class="copy-btn">复制</button>
-                    <pre><code><span class="code-comment" data-i18n="build.windows.msvc.comment1"># 安装依赖并配置</span>
+                    <pre><code><span class="code-comment" data-i18n="build.windows.msvc.comment1"># 检查/配置 MSVC 环境</span>
+pixi run check_msvc
+<span class="code-comment" data-i18n="build.windows.msvc.comment2"># 安装 Qt</span>
+pixi run install_qt
+<span class="code-comment" data-i18n="build.windows.msvc.comment3"># 安装 vcpkg</span>
+pixi run install_vcpkg
+<span class="code-comment" data-i18n="build.windows.msvc.comment4"># 配置</span>
 pixi run configure
-<span class="code-comment" data-i18n="build.windows.msvc.comment2"># 构建</span>
+<span class="code-comment" data-i18n="build.windows.msvc.comment5"># 构建</span>
 pixi run build
-<span class="code-comment" data-i18n="build.windows.msvc.comment3"># 安装</span>
+<span class="code-comment" data-i18n="build.windows.msvc.comment6"># 安装</span>
 pixi run install</code></pre>
                 </div>
 

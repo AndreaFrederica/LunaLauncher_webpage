@@ -127,14 +127,17 @@
       },
       "msvc_auto": {
         "title": "自动化构建：Pixi + MSVC",
-        "desc": "需要从 x64 Native Tools Command Prompt 运行。"
+        "desc": "仅需 MSVC，建议从 x64 Native Tools Command Prompt 运行。"
       },
       "msvc": {
         "title": "选项 B：Pixi + MSVC",
         "desc": "使用 Pixi 配合 MSVC 工具链。需要从 x64 Native Tools Command Prompt 运行。",
-        "comment1": "# 安装依赖并配置",
-        "comment2": "# 构建",
-        "comment3": "# 安装"
+        "comment1": "# 检查/配置 MSVC 环境",
+        "comment2": "# 安装 Qt",
+        "comment3": "# 安装 vcpkg",
+        "comment4": "# 配置",
+        "comment5": "# 构建",
+        "comment6": "# 安装"
       },
       "msvc_manual": {
         "title": "手动构建：MSVC",
