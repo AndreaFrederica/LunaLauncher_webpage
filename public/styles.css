@@ -105,6 +105,9 @@ a:hover {
 }
 
 .brand strong {
+    font-family: "Ubuntu Mono", monospace;
+    font-weight: 700;
+    font-style: normal;
     letter-spacing: 0.2px;
     font-size: 16px;
 }
