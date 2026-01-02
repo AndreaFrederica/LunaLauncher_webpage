@@ -920,19 +920,82 @@ html {
     padding: 16px;
     margin: 16px 0;
     overflow-x: auto;
+    position: relative;
+}
+
+/* Copy button */
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+}
+
+.code-block:hover .copy-btn {
+    opacity: 1;
+}
+
+.copy-btn:hover {
+    background: var(--surface-strong);
+}
+
+.copy-btn.copied {
+    background: var(--accent);
+    color: white;
 }
 
 .code-block pre {
     margin: 0;
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-family: 'Ubuntu Mono', 'Noto Sans SC', 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 13px;
-    line-height: 1.6;
+    line-height: 1.35;
     color: var(--text);
+    position: relative;
+    padding-left: 0;
+}
+
+/* Code line numbers */
+.code-line {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    /* preserve per-line spacing while parent collapses inter-line whitespace */
+    white-space: pre;
+}
+
+.code-line::before {
+    content: attr(data-line);
+    position: absolute;
+    left: 0;
+    width: 30px;
+    text-align: right;
+    color: var(--muted-2);
+    font-size: 11px;
+    -webkit-user-select: none;
+    user-select: none;
+    opacity: 0.6;
+}
+
+.code-block code,
+.code-block span {
+    font-family: inherit;
 }
 
 .code-block code {
     background: none;
     padding: 0;
+    /* collapse whitespace between code-line spans to avoid blank lines from newlines in HTML */
+    white-space: normal;
+    display: block;
 }
 
 /* Inline code styling */
@@ -942,19 +1005,14 @@ p code {
     background: var(--surface);
     padding: 2px 6px;
     border-radius: 4px;
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-family: 'Ubuntu Mono', 'Noto Sans SC', 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 13px;
     color: var(--text);
 }
 
-/* Prevent inline code in code blocks from getting background */
-.code-block code {
-    background: none;
-    padding: 0;
-}
-
 .code-comment {
     color: var(--muted-2);
+    font-family: 'Ubuntu Mono', 'Noto Sans SC', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 .note {

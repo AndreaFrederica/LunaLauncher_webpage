@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="resources/org.lunalauncher.LunaLauncher_256.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
 </head>
@@ -246,6 +246,7 @@
             <section class="build-section" id="get-source">
                 <h2 data-i18n="build.get_source.title">获取源代码</h2>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code>git clone --recursive https://github.com/AndreaFrederica/LunaLauncher.git
 <span class="code-comment" data-i18n="build.get_source.comment1">cd LunaLauncher</span></code></pre>
                 </div>
@@ -260,32 +261,28 @@
                 <h4 data-i18n="build.windows.msys2.m2m.title">使用 Msys2Manager (m2m)</h4>
                 <p data-i18n-html="build.windows.msys2.m2m.desc"><a href="https://github.com/AndreaFrederica/Msys2Manager/releases" target="_blank" rel="noopener noreferrer">Msys2Manager (m2m)</a> 是专门用于管理 MSYS2 环境的 CLI 工具。从 <a href="https://github.com/AndreaFrederica/Msys2Manager/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a> 下载最新版本并添加到 PATH。</p>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code><span class="code-comment" data-i18n="build.windows.msys2.m2m.comment1"># 设置 JAVA_HOME</span>
 $env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-17.0.12.101-hotspot"
-
 <span class="code-comment" data-i18n="build.windows.msys2.m2m.comment2"># 引导安装 MSYS2（仅首次）</span>
 m2m bootstrap
-
 <span class="code-comment" data-i18n="build.windows.msys2.m2m.comment3"># 配置和构建</span>
 m2m run configure
 m2m run build
-
 <span class="code-comment" data-i18n="build.windows.msys2.m2m.comment4"># 安装</span>
 m2m run install</code></pre>
                 </div>
 
                 <h4 data-i18n="build.windows.msys2.ps.title">使用 PowerShell 脚本</h4>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code><span class="code-comment" data-i18n="build.windows.msys2.ps.comment1"># 设置 JAVA_HOME</span>
 $env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-17.0.12.101-hotspot"
-
 <span class="code-comment" data-i18n="build.windows.msys2.ps.comment2"># 初始化 MSYS2 环境（仅首次）</span>
 .\tools\msys2\bootstrap.ps1
-
 <span class="code-comment" data-i18n="build.windows.msys2.ps.comment3"># 配置和构建</span>
 .\tools\msys2\run.ps1 configure
 .\tools\msys2\run.ps1 build
-
 <span class="code-comment" data-i18n="build.windows.msys2.ps.comment4"># 安装</span>
 .\tools\msys2\run.ps1 install</code></pre>
                 </div>
@@ -305,18 +302,15 @@ $env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-17.0.12.101-hotspot"
 
                 <h4 data-i18n="build.windows.msys2_manual.compile.title">从命令行编译</h4>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code><span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment1"># 进入源代码目录</span>
 cd /path/to/LunaLauncher
-
 <span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment2"># 配置 CMake（Debug 构建）</span>
 cmake -Bbuild -DCMAKE_INSTALL_PREFIX=install -DENABLE_LTO=ON -DCMAKE_BUILD_TYPE=Debug -G Ninja
-
 <span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment3"># 构建</span>
 cmake --build build
-
 <span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment4"># 安装</span>
 cmake --install build
-
 <span class="code-comment" data-i18n="build.windows.msys2_manual.compile.comment5"># 便携版（数据存储在应用目录）</span>
 cmake --install build --component portable</code></pre>
                 </div>
@@ -327,12 +321,11 @@ cmake --install build --component portable</code></pre>
                 <h3 id="windows-msvc-auto" data-i18n="build.windows.msvc_auto.title">自动化构建：Pixi + MSVC</h3>
                 <p data-i18n="build.windows.msvc_auto.desc">需要从 x64 Native Tools Command Prompt 运行。</p>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code><span class="code-comment" data-i18n="build.windows.msvc.comment1"># 安装依赖并配置</span>
 pixi run configure
-
 <span class="code-comment" data-i18n="build.windows.msvc.comment2"># 构建</span>
 pixi run build
-
 <span class="code-comment" data-i18n="build.windows.msvc.comment3"># 安装</span>
 pixi run install</code></pre>
                 </div>
@@ -350,15 +343,13 @@ pixi run install</code></pre>
 
                 <h4 data-i18n="build.windows.msvc_manual.compile.title">从命令行编译</h4>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code><span class="code-comment" data-i18n="build.windows.msvc_manual.compile.comment1"># 配置 CMake（调整 Qt 路径）</span>
 cmake -Bbuild -DCMAKE_INSTALL_PREFIX=install -DENABLE_LTO=ON -DCMAKE_PREFIX_PATH=C:\Qt\6.6.2\msvc2019_64\lib\cmake
-
 <span class="code-comment" data-i18n="build.windows.msvc_manual.compile.comment2"># 构建（Debug）</span>
 cmake --build build --config Debug -- /p:UseMultiToolTask=true /p:EnforceProcessCountAcrossBuilds=true
-
 <span class="code-comment" data-i18n="build.windows.msvc_manual.compile.comment3"># 安装</span>
 cmake --install build --config Debug
-
 <span class="code-comment" data-i18n="build.windows.msvc_manual.compile.comment4"># 便携版</span>
 cmake --install build --config Debug --component portable</code></pre>
                 </div>
@@ -382,6 +373,7 @@ cmake --install build --config Debug --component portable</code></pre>
 
                 <h3 id="linux-portable" data-i18n="build.linux.portable.title">构建便携版</h3>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code>cmake -S . -B build -G Ninja \
    -DCMAKE_INSTALL_PREFIX=install
 cmake --build build
@@ -391,6 +383,7 @@ cmake --install build --component portable</code></pre>
 
                 <h3 id="linux-system" data-i18n="build.linux.system.title">构建并安装到系统</h3>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code>cmake -S . -B build -G Ninja \
    -DCMAKE_BUILD_TYPE=Release \
    -DCMAKE_INSTALL_PREFIX="/usr" \
@@ -415,6 +408,7 @@ cmake --install build</code></pre>
 
                 <h4 id="macos-homebrew" data-i18n="build.macos.homebrew.title">使用 Homebrew 安装</h4>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code>brew update
 brew install qt openjdk@17 cmake ninja extra-cmake-modules
 # 使用 qt@5 安装 Qt 5</code></pre>
@@ -422,6 +416,7 @@ brew install qt openjdk@17 cmake ninja extra-cmake-modules
 
                 <h3 id="macos-build" data-i18n="build.macos.build.title">构建</h3>
                 <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
                     <pre><code>mkdir build
 cmake \
   -S . \
@@ -589,6 +584,85 @@ cmake --install build</code></pre>
                     const group = this.closest('.toc-group');
                     if (group) {
                         group.classList.toggle('expanded');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        // Code block line numbers and copy functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Process all code blocks
+            const codeBlocks = document.querySelectorAll('.code-block');
+
+            codeBlocks.forEach(block => {
+                const codeElement = block.querySelector('code');
+                if (!codeElement) return;
+
+                // Get plain text to count actual lines
+                const plainText = codeElement.textContent;
+                const textLines = plainText.split('\n').filter(line => line !== '');
+
+                // Split HTML by newlines and process
+                let htmlLines = codeElement.innerHTML.split('\n');
+                let resultHTML = '';
+                let lineNumber = 1;
+
+                htmlLines.forEach((htmlLine, index) => {
+                    // Skip empty lines that only contain whitespace
+                    if (htmlLine.trim() === '') {
+                        // Check if this represents an actual blank line in the code
+                        // by looking at the plain text context
+                        return;
+                    }
+
+                    // Check if this line contains only HTML tags (like <span class="code-comment">)
+                    // If it starts with <span and doesn't have other content, it might be a continuation
+                    if (htmlLine.trim().startsWith('<span') && !htmlLine.includes('</span>')) {
+                        // This is an opening tag line, append to next line
+                        return;
+                    }
+
+                    // Wrap this line with line number
+                    resultHTML += '<span class="code-line" data-line="' + lineNumber + '">' + htmlLine + '</span>\n';
+                    lineNumber++;
+                });
+
+                codeElement.innerHTML = resultHTML.trim();
+            });
+
+            // Copy button functionality
+            const copyButtons = document.querySelectorAll('.copy-btn');
+
+            copyButtons.forEach(button => {
+                button.addEventListener('click', async function() {
+                    const codeBlock = this.closest('.code-block');
+                    const codeElement = codeBlock?.querySelector('code');
+
+                    if (codeElement) {
+                        try {
+                            // Get text content without line numbers
+                            let text = codeElement.textContent;
+                            text = text.trim();
+
+                            await navigator.clipboard.writeText(text);
+
+                            // Visual feedback
+                            this.textContent = '已复制!';
+                            this.classList.add('copied');
+
+                            setTimeout(() => {
+                                this.textContent = '复制';
+                                this.classList.remove('copied');
+                            }, 2000);
+                        } catch (err) {
+                            console.error('Failed to copy:', err);
+                            this.textContent = '失败';
+                            setTimeout(() => {
+                                this.textContent = '复制';
+                            }, 2000);
+                        }
                     }
                 });
             });
