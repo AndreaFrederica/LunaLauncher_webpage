@@ -228,13 +228,15 @@
     },
     "oauth": {
         "title": "登录成功",
-        "success_title": "登录成功",
+        "success_title": "Microsoft 账户登录成功",
+        "success_message": "已成功登录 Microsoft 账户",
         "error_title": "登录失败",
         "error_message": "认证过程中出现问题",
         "question_title": "出现疑问",
         "question_message": "可能出现了某些问题",
         "redirecting": "正在返回 Luna Launcher...",
+        "close_hint": "现在可以关闭此窗口",
         "wait": "请稍候",
-        "manual_instruction": "如果页面没有自动跳转，请手动关闭此窗口。"
+        "manual_instruction": "请手动关闭此窗口"
     }
 }

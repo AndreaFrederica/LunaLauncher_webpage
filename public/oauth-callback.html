@@ -31,6 +31,10 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
         }
+        .oauth-card.success-card {
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0.04));
+            border-color: rgba(16, 185, 129, 0.3);
+        }
         .oauth-icon {
             width: 80px;
             height: 80px;
@@ -177,20 +181,17 @@
         </div>
 
         <main class="oauth-main">
-            <div class="oauth-card">
-                <div class="oauth-icon" id="oauth-icon">
+            <div class="oauth-card" id="oauth-card">
+                <div class="oauth-icon success" id="oauth-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
                     </svg>
                 </div>
-                <h1 class="oauth-title" data-i18n="oauth.title">登录成功</h1>
-                <p class="oauth-message" id="oauth-message" data-i18n="oauth.redirecting">正在返回 Luna Launcher...</p>
-                <div class="oauth-progress">
-                    <p class="oauth-progress-text">
-                        <span class="oauth-spinner"></span>
-                        <span data-i18n="oauth.wait">请稍候</span>
-                    </p>
+                <h1 class="oauth-title" data-i18n="oauth.success_title">登录成功</h1>
+                <p class="oauth-message" id="oauth-message" data-i18n="oauth.success_message">已成功登录 Microsoft 账户</p>
+                <div class="oauth-progress" id="oauth-progress">
+                    <p class="oauth-progress-text" data-i18n="oauth.close_hint">现在可以关闭此窗口</p>
                 </div>
             </div>
         </main>
@@ -218,7 +219,7 @@
         const state = params.get('state');
         const error = params.get('error');
         const errorDescription = params.get('error_description');
-        const debugMode = params.get('debug') === '1'; // 必须 ?debug=1 才进入调试模式
+        const debugMode = params.get('debug') === '1';
 
         // OAuth result object - exposed to console for debugging
         window.lunaOAuth = {
@@ -234,7 +235,8 @@
         const titleEl = document.querySelector('h1');
         const messageEl = document.getElementById('oauth-message');
         const iconEl = document.getElementById('oauth-icon');
-        const progressEl = document.querySelector('.oauth-progress');
+        const cardEl = document.getElementById('oauth-card');
+        const progressEl = document.getElementById('oauth-progress');
 
         // Custom URL scheme for the launcher
         const REDIRECT_SCHEME = 'lunalauncher://oauth/microsoft';
@@ -243,12 +245,15 @@
         // Store redirect URL for console access
         window.lunaOAuth.redirectUrl = REDIRECT_URL;
 
-        function setSuccessState() {
+        function setSuccessState(msg) {
             iconEl.classList.remove('error', 'question');
             iconEl.classList.add('success');
             iconEl.querySelector('svg').innerHTML = '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>';
             titleEl.textContent = i18n.translations.oauth?.success_title || '登录成功';
-            messageEl.textContent = i18n.translations.oauth?.redirecting || '正在返回 Luna Launcher...';
+            messageEl.textContent = msg || (i18n.translations.oauth?.success_message || '已成功登录 Microsoft 账户');
+            cardEl.classList.add('success-card');
+            progressEl.innerHTML = '<p class="oauth-progress-text">' +
+                (i18n.translations.oauth?.close_hint || '现在可以关闭此窗口') + '</p>';
             window.lunaOAuth.success = true;
             window.lunaOAuth.error = null;
             console.log('%c[Luna OAuth] Login successful!', 'color: #10b981; font-weight: bold;');
@@ -261,6 +266,8 @@
             iconEl.querySelector('svg').innerHTML = '<circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line>';
             titleEl.textContent = i18n.translations.oauth?.error_title || '登录失败';
             messageEl.textContent = errorMsg || (i18n.translations.oauth?.error_message || '认证过程中出现问题');
+            progressEl.innerHTML = '<p class="oauth-progress-text">' +
+                (i18n.translations.oauth?.manual_instruction || '请手动关闭此窗口') + '</p>';
             window.lunaOAuth.success = false;
             window.lunaOAuth.error = errorMsg || error;
             console.log('%c[Luna OAuth] Login failed!', 'color: #ef4444; font-weight: bold;');
@@ -279,16 +286,14 @@
         }
 
         // Expose simulation functions for debugging
-        window.simulateSuccess = function() {
+        window.simulateSuccess = function(msg) {
             console.log('[Luna OAuth] Simulating success state...');
-            setSuccessState();
-            progressEl.innerHTML = '<p class="oauth-progress-text" style="color: var(--muted);">[调试模式] 模拟成功状态</p>';
+            setSuccessState(msg);
         };
 
         window.simulateError = function(msg) {
             console.log('[Luna OAuth] Simulating error state...');
-            setErrorState(msg || '调试模拟错误');
-            progressEl.innerHTML = '<p class="oauth-progress-text" style="color: var(--muted);">[调试模式] 模拟错误状态</p>';
+            setErrorState(msg);
         };
 
         // Expose a helper function to console
@@ -298,52 +303,23 @@
 
         // Determine initial state
         if (error) {
-            // OAuth error - 真实错误回调
+            // OAuth error
             setErrorState(errorDescription || error);
         } else if (code || state === 'success') {
-            // OAuth success - 真实成功回调
-            setSuccessState();
-        } else if (debugMode) {
-            // Debug mode - 仅当 ?debug=1 时
-            console.log('%c[Luna OAuth] Debug mode!', 'color: #7c5cff; font-weight: bold;');
-            console.log('Commands: simulateSuccess(), simulateError("msg"), getOAuthResult()');
-            progressEl.innerHTML = '<p class="oauth-progress-text" style="color: var(--accent);">[调试模式] 使用 simulateSuccess() 或 simulateError() 测试</p>';
-        } else {
-            // 没有参数 - 疑问状态
-            setQuestionState();
-        }
-
-        // Redirect back to the launcher app
-        function doRedirect() {
-            if (debugMode) return;
-
-            // Store result for the app to read
-            sessionStorage.setItem('lunaOAuthResult', JSON.stringify(window.lunaOAuth));
-
+            // OAuth success with parameters
+            setSuccessState(i18n.translations.oauth?.redirecting || '正在返回 Luna Launcher...');
             // Redirect to app
-            window.location.replace(REDIRECT_URL);
-
-            // Try to close this window after a short delay
             setTimeout(function() {
-                // Check if we were actually redirected
-                if (window.location.protocol !== REDIRECT_SCHEME + ':') {
-                    // Still here, show manual instruction
-                    progressEl.innerHTML = '<p class="oauth-progress-text" style="color: var(--muted);">' +
-                        (i18n.translations.oauth?.manual_instruction || '请手动关闭此窗口') + '</p>';
-                } else {
-                    // Redirected to app, try to close this window
-                    try {
-                        window.close();
-                    } catch (e) {
-                        // Ignore if not allowed
-                    }
-                }
-            }, 500);
-        }
-
-        // 只有在有参数时才自动跳转
-        if (!debugMode && (code || state || error)) {
-            setTimeout(doRedirect, 1500);
+                window.location.replace(REDIRECT_URL);
+            }, 1500);
+        } else if (debugMode) {
+            // Debug mode
+            console.log('%c[Luna OAuth] Debug mode!', 'color: #7c5cff; font-weight: bold;');
+            console.log('Commands: simulateSuccess("msg"), simulateError("msg"), getOAuthResult()');
+            progressEl.innerHTML = '<p class="oauth-progress-text" style="color: var(--accent);">[调试模式] 使用 simulateSuccess() 测试</p>';
+        } else {
+            // No parameters - default to success (user opened page from launcher)
+            setSuccessState();
         }
     })();
     </script>

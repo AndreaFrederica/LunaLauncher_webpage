@@ -228,13 +228,15 @@
     },
     "oauth": {
         "title": "Login Successful",
-        "success_title": "Login Successful",
+        "success_title": "Microsoft Account Login Successful",
+        "success_message": "You have successfully signed in with your Microsoft account",
         "error_title": "Login Failed",
         "error_message": "An error occurred during authentication",
         "question_title": "Something's Wrong",
         "question_message": "Something may have gone wrong",
         "redirecting": "Returning to Luna Launcher...",
+        "close_hint": "You may now close this window",
         "wait": "Please wait",
-        "manual_instruction": "If the page doesn't redirect automatically, please close this window manually."
+        "manual_instruction": "Please close this window manually"
     }
 }
