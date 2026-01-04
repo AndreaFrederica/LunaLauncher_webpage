@@ -226,6 +226,11 @@
     "language": {
         "select": "Select Language"
     },
+    "theme": {
+        "system": "Follow System",
+        "light": "Light",
+        "dark": "Dark"
+    },
     "oauth": {
         "title": "Login Successful",
         "success_title": "Microsoft Account Login Successful",

@@ -330,3 +330,77 @@ if (document.readyState === 'loading') {
 } else {
     i18n.init();
 }
+
+// Theme switcher with dropdown menu (dark only)
+(function() {
+    const THEME_KEY = 'luna-theme';
+
+    function getTheme() {
+        return localStorage.getItem(THEME_KEY) || 'dark';
+    }
+
+    function setTheme(theme) {
+        localStorage.setItem(THEME_KEY, theme);
+        applyTheme(theme);
+    }
+
+    function applyTheme(theme) {
+        const root = document.documentElement;
+        root.setAttribute('data-theme', 'dark');
+
+        // Update active state in menu
+        document.querySelectorAll('.theme-option').forEach(opt => {
+            opt.classList.toggle('active', opt.dataset.theme === theme);
+        });
+
+        // Update logo based on theme
+        document.querySelectorAll('.brand picture').forEach(picture => {
+            const source = picture.querySelector('source');
+            const img = picture.querySelector('img');
+            if (source && img) {
+                // Always use dark mode logo
+                picture.insertBefore(source, img);
+            }
+        });
+    }
+
+    function initTheme() {
+        const themeButton = document.getElementById('theme-button');
+        const themeMenu = document.getElementById('theme-menu');
+
+        if (themeButton && themeMenu) {
+            // Toggle menu
+            themeButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                themeMenu.classList.toggle('show');
+                themeButton.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', () => {
+                themeMenu.classList.remove('show');
+                themeButton.classList.remove('active');
+            });
+
+            // Theme option click
+            themeMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const option = e.target.closest('.theme-option');
+                if (option) {
+                    const theme = option.dataset.theme;
+                    setTheme(theme);
+                    themeMenu.classList.remove('show');
+                    themeButton.classList.remove('active');
+                }
+            });
+        }
+
+        applyTheme(getTheme());
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTheme);
+    } else {
+        initTheme();
+    }
+})();

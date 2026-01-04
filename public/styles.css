@@ -14,19 +14,6 @@
     --max: 1120px;
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --bg: #f5f7ff;
-        --surface: rgba(10, 18, 38, 0.06);
-        --surface-strong: rgba(10, 18, 38, 0.08);
-        --border: rgba(10, 18, 38, 0.12);
-        --text: rgba(10, 18, 38, 0.92);
-        --muted: rgba(10, 18, 38, 0.7);
-        --muted-2: rgba(10, 18, 38, 0.55);
-        --shadow: 0 18px 50px rgba(10, 18, 38, 0.12);
-    }
-}
-
 * {
     box-sizing: border-box;
 }
@@ -81,8 +68,11 @@ a:hover {
 }
 
 .container {
-    width: min(var(--max), calc(100% - 48px));
+    width: 100%;
+    max-width: 1120px; /* Explicit value */
     margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
 }
 
 .topbar {
@@ -94,22 +84,13 @@ a:hover {
 
 .brand {
     display: inline-flex;
-    gap: 12px;
     align-items: center;
 }
 
-.brand img {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-}
-
-.brand strong {
-    font-family: "Ubuntu Mono", monospace;
-    font-weight: 700;
-    font-style: normal;
-    letter-spacing: 0.2px;
-    font-size: 16px;
+.brand img,
+.brand picture {
+    height: 56px;
+    width: auto;
 }
 
 .nav {
@@ -130,28 +111,42 @@ a:hover {
     text-decoration: none;
 }
 
+/* Language and theme selector wrapper */
+.selectors-wrapper {
+    display: inline-flex;
+    align-items: stretch;
+    margin-left: 14px;
+}
+
 /* Language switcher styles */
 .language-selector {
     position: relative;
-    margin-left: 14px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .language-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 8px 12px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 12px !important;
+    border: 1px solid var(--border) !important;
+    background: var(--surface) !important;
+    color: var(--text) !important;
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s;
+    height: 38px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
 }
 
 .language-button:hover {
-    background: var(--surface-strong);
+    background: var(--surface-strong) !important;
 }
 
 .language-button:focus {
@@ -160,13 +155,13 @@ a:hover {
 }
 
 .language-button .language-icon {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
 }
 
 .language-button .dropdown-arrow {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     transition: transform 0.2s;
 }
 
@@ -224,6 +219,116 @@ a:hover {
 .language-option:focus {
     outline: 2px solid var(--accent);
     outline-offset: -2px;
+}
+
+.theme-selector {
+    display: inline-flex;
+    align-items: stretch;
+    position: relative;
+}
+
+.theme-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.language-selector .language-button {
+    border-radius: 12px 0 0 12px;
+}
+
+.theme-button:hover {
+    background: var(--surface-strong);
+}
+
+.theme-button:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.theme-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.theme-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 140px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s;
+    z-index: 1000;
+}
+
+.theme-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.theme-option:hover {
+    background: var(--surface);
+}
+
+.theme-option:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+}
+
+.theme-option .option-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.theme-option .check-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: auto;
+    opacity: 0;
+    transition: opacity 0.15s;
+    stroke: var(--accent);
+}
+
+.theme-option.active {
+    background: var(--surface);
+}
+
+.theme-option.active .check-icon {
+    opacity: 1;
 }
 
 .hero {
@@ -326,12 +431,6 @@ a:hover {
     color: var(--muted);
 }
 
-@media (prefers-color-scheme: light) {
-    .badge {
-        background: rgba(255, 255, 255, 0.55);
-    }
-}
-
 /* User comment style */
 .user-comment {
     display: flex;
@@ -398,12 +497,6 @@ body[data-lang="en-US"] .user-comment.en-only {
     color: var(--text);
     margin: 14px 0 0;
     font-size: 13px;
-}
-
-@media (prefers-color-scheme: light) {
-    .notice {
-        background: rgba(255, 205, 75, 0.18);
-    }
 }
 
 .section h2 {
@@ -522,12 +615,6 @@ body[data-lang="en-US"] .user-comment.en-only {
     border-radius: 20px;
 }
 
-@media (prefers-color-scheme: light) {
-    .icon-tile {
-        background: rgba(255, 255, 255, 0.55);
-    }
-}
-
 @media (max-width: 920px) {
     .feature-row,
     .feature-row.reverse {
@@ -536,9 +623,24 @@ body[data-lang="en-US"] .user-comment.en-only {
 }
 
 footer {
-    padding: 26px 0 40px;
+    padding: 26px 24px 40px;
     color: var(--muted-2);
     font-size: 13px;
+    max-width: var(--max);
+    margin: 0 auto;
+}
+
+.oauth-footer {
+    padding: 20px 24px;
+    color: var(--muted-2);
+    font-size: 13px;
+}
+
+.oauth-footer .container {
+    max-width: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 24px;
 }
 
 .footer-disclaimer {
@@ -605,27 +707,29 @@ footer {
         display: none;
     }
 
-    .language-selector {
+    .selectors-wrapper {
         margin-left: auto;
     }
 }
 
 @media (max-width: 600px) {
     .container {
-        width: calc(100% - 32px);
+        padding: 0 16px;
     }
 
     .topbar {
         padding: 12px 0;
     }
 
-    .brand strong {
-        font-size: 14px;
+    .brand img,
+    .brand picture {
+        height: 44px;
     }
 
     .language-button {
-        padding: 6px 10px;
+        padding: 6px 12px;
         font-size: 13px;
+        height: 36px;
     }
 
     .language-button .language-icon {

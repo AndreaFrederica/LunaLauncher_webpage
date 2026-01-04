@@ -226,6 +226,11 @@
     "language": {
         "select": "选择语言"
     },
+    "theme": {
+        "system": "跟随系统",
+        "light": "浅色",
+        "dark": "深色"
+    },
     "oauth": {
         "title": "登录成功",
         "success_title": "Microsoft 账户登录成功",
