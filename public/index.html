@@ -62,6 +62,24 @@
                         <span class="badge" data-i18n="hero.badge_p2p">P2P 联机</span>
                         <span class="badge" data-i18n="hero.badge_fluent">Fluent 主题</span>
                     </div>
+                    <div class="repo-stats" id="github-stats">
+                        <a class="repo-stat loading" id="stat-version" href="https://github.com/AndreaFrederica/LunaLauncher/releases" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                            </svg>
+                            <span class="stat-label" data-i18n="hero.stats_release">Release</span>
+                            <span class="stat-value">Loading...</span>
+                        </a>
+                        <a class="repo-stat loading" id="stat-commit" href="https://github.com/AndreaFrederica/LunaLauncher/commits/develop" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"/>
+                                <line x1="1.05" y1="12" x2="7" y2="12"/>
+                                <line x1="17.01" y1="12" x2="22.96" y2="12"/>
+                            </svg>
+                            <span class="stat-label" data-i18n="hero.stats_commit">Develop</span>
+                            <span class="stat-value">Loading...</span>
+                        </a>
+                    </div>
                     <div class="notice" data-i18n="hero.notice">当前处于早期版本:可能需要自行构建,或联系开发者获取测试版本。</div>
                 </div>
                 <div class="hero-art">
@@ -181,6 +199,313 @@
     </div>
 
     <script src="i18n.js"></script>
+
+    <script>
+    // GitHub stats fetcher - async to avoid blocking page load
+    (function() {
+        const REPO_OWNER = 'AndreaFrederica';
+        const REPO_NAME = 'LunaLauncher';
+        const DEFAULT_BRANCH = 'develop';
+
+        // Cache key and duration
+        const CACHE_KEY_VERSION = 'luna_github_version';
+        const CACHE_KEY_COMMIT = 'luna_github_commit';
+        const CACHE_KEY_COMMIT_SHA = 'luna_github_commit_sha';
+        const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours
+
+        // Format date to relative time (e.g., "2 days ago")
+        function formatRelativeTime(dateStr) {
+            const date = new Date(dateStr);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffMinutes = Math.floor(diffMs / (1000 * 60));
+
+            const lang = document.body.getAttribute('data-lang') || 'zh-CN';
+
+            if (diffDays > 0) {
+                return lang === 'zh-CN'
+                    ? `${diffDays} 天前`
+                    : `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+            } else if (diffHours > 0) {
+                return lang === 'zh-CN'
+                    ? `${diffHours} 小时前`
+                    : `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+            } else if (diffMinutes > 0) {
+                return lang === 'zh-CN'
+                    ? `${diffMinutes} 分钟前`
+                    : `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+            } else {
+                return lang === 'zh-CN' ? '刚刚' : 'just now';
+            }
+        }
+
+        function updateVersionDisplay(version) {
+            const statEl = document.getElementById('stat-version');
+            const valueEl = statEl.querySelector('.stat-value');
+            if (version) {
+                valueEl.textContent = 'v' + version;
+                statEl.classList.remove('loading');
+            } else {
+                valueEl.setAttribute('data-i18n-none', '');
+                valueEl.textContent = window.i18n?.translations?.hero?.stats_none || 'None';
+                statEl.classList.remove('loading');
+                statEl.classList.add('empty');
+            }
+        }
+
+        function updateCommitDisplay(dateStr, sha) {
+            const statEl = document.getElementById('stat-commit');
+            const valueEl = statEl.querySelector('.stat-value');
+            if (dateStr) {
+                valueEl._commitDate = dateStr;
+                valueEl._commitSha = sha;
+                // 显示简写 SHA + 相对时间
+                const shortSha = sha ? sha.substring(0, 7) : '';
+                const relativeTime = formatRelativeTime(dateStr);
+                valueEl.innerHTML = `<span class="commit-sha" title="${sha}">${shortSha}</span> ${relativeTime}`;
+                statEl.classList.remove('loading');
+            } else {
+                valueEl.setAttribute('data-i18n-none', '');
+                valueEl.textContent = window.i18n?.translations?.hero?.stats_dev_version || 'Dev Build';
+                statEl.classList.remove('loading');
+                statEl.classList.add('empty');
+            }
+        }
+
+        function showError(statEl) {
+            const valueEl = statEl.querySelector('.stat-value');
+            valueEl.textContent = '--';
+            statEl.classList.remove('loading');
+        }
+
+        // Get cached data
+        function getCached(key) {
+            try {
+                const cached = localStorage.getItem(key);
+                if (cached) {
+                    const data = JSON.parse(cached);
+                    if (Date.now() - data.timestamp < CACHE_DURATION) {
+                        return data.value;
+                    }
+                }
+            } catch (e) {}
+            return null;
+        }
+
+        // Set cached data
+        function setCached(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify({
+                    value: value,
+                    timestamp: Date.now()
+                }));
+            } catch (e) {}
+        }
+
+        // CORS proxy URLs
+        const CORS_PROXIES = [
+            'https://corsproxy.io/?',
+            'https://api.allorigins.win/raw?url=',
+            'https://api.codetabs.com/v1/proxy?quest='
+        ];
+
+        // Fetch latest release version with CORS proxy
+        async function fetchLatestRelease() {
+            const cachedVersion = getCached(CACHE_KEY_VERSION);
+            if (cachedVersion !== null) {
+                updateVersionDisplay(cachedVersion);
+                return;
+            }
+
+            const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest`;
+
+            // Try direct first
+            try {
+                const response = await fetch(apiUrl, { cache: 'no-store' });
+                if (response.ok) {
+                    const data = await response.json();
+                    setCached(CACHE_KEY_VERSION, data.tag_name);
+                    updateVersionDisplay(data.tag_name);
+                    return;
+                } else if (response.status === 404) {
+                    updateVersionDisplay(null);
+                    return;
+                }
+            } catch (e) {}
+
+            // Try with CORS proxies
+            for (const proxy of CORS_PROXIES) {
+                try {
+                    const response = await fetch(proxy + encodeURIComponent(apiUrl), { cache: 'no-store' });
+                    if (response.ok) {
+                        const data = await response.json();
+                        setCached(CACHE_KEY_VERSION, data.tag_name);
+                        updateVersionDisplay(data.tag_name);
+                        return;
+                    }
+                } catch (e) {
+                    continue;
+                }
+            }
+
+            showError(document.getElementById('stat-version'));
+        }
+
+        // Fetch latest commit by parsing GitHub HTML page with CORS proxy
+        async function fetchLatestCommit() {
+            const pageUrl = `https://github.com/${REPO_OWNER}/${REPO_NAME}/commits/${DEFAULT_BRANCH}`;
+            console.log('[GitHub] Fetching:', pageUrl);
+
+            // GitHub HTML pages require CORS proxy, try directly with proxies
+            for (const proxy of CORS_PROXIES) {
+                try {
+                    const fetchUrl = proxy + encodeURIComponent(pageUrl);
+                    console.log('[GitHub] Trying proxy:', proxy);
+                    const response = await fetch(fetchUrl, { cache: 'no-store' });
+                    console.log('[GitHub] Response status:', response.status, response.ok);
+                    if (response.ok) {
+                        const html = await response.text();
+                        console.log('[GitHub] HTML length:', html.length);
+                        console.log('[GitHub] HTML preview (first 500):', html.substring(0, 500));
+
+                        // Try various date patterns in GitHub HTML
+                        const patterns = [
+                            /<relative-time\s+datetime="([^"]+)"/,  // Modern format
+                            /datetime="([^"]+)"/,                    // Any datetime attr
+                            /"commit-tease[^"]*"[^>]*datetime="([^"]+)"/,
+                            /data-date="([^"]+)"/,
+                            /<time[^>]*datetime="([^"]+)"/i
+                        ];
+
+                        // NEW: Parse GitHub hydration JSON data (modern GitHub format)
+                        // GitHub embeds commit data in <script type="application/json" data-target="react-app.hydration">
+                        const hydrationMatch = html.match(/<script\s+type="application\/json"\s+data-target="react-app\.hydration"[^>]*>([\s\S]*?)<\/script>/);
+                        console.log('[GitHub] Hydration match:', hydrationMatch);
+                        if (hydrationMatch && hydrationMatch[1]) {
+                            try {
+                                // The JSON might be wrapped in a comment or have additional data
+                                let jsonStr = hydrationMatch[1].trim();
+                                // Handle potential comment wrapper
+                                jsonStr = jsonStr.replace(/^\s*<!--[\s\S]*?-->/, '').trim();
+                                const hydrationData = JSON.parse(jsonStr);
+                                console.log('[GitHub] Hydration data keys:', Object.keys(hydrationData));
+
+                                // Navigate the hydration data structure to find commits
+                                // GitHub stores commits in data.payload.repository.branch.tabsCommits.nodes
+                                if (hydrationData.payload?.repository?.branch?.tabsCommits?.nodes) {
+                                    const commits = hydrationData.payload.repository.branch.tabsCommits.nodes;
+                                    console.log('[GitHub] Commits found:', commits.length);
+                                    if (commits.length > 0) {
+                                        const firstCommit = commits[0];
+                                        const dateStr = firstCommit.authoredDate || firstCommit.committedDate;
+                                        const sha = firstCommit.oid;
+                                        console.log('[GitHub] Latest commit date:', dateStr, 'SHA:', sha);
+                                        if (dateStr) {
+                                            setCached(CACHE_KEY_COMMIT, dateStr);
+                                            setCached(CACHE_KEY_COMMIT_SHA, sha);
+                                            updateCommitDisplay(dateStr, sha);
+                                            return;
+                                        }
+                                    }
+                                }
+                                // Alternative path: data.payload.repository.commits.edges
+                                if (hydrationData.payload?.repository?.commits?.edges) {
+                                    const commits = hydrationData.payload.repository.commits.edges;
+                                    if (commits.length > 0) {
+                                        const firstCommit = commits[0].node;
+                                        const dateStr = firstCommit.authoredDate || firstCommit.committedDate;
+                                        const sha = firstCommit.oid;
+                                        console.log('[GitHub] Latest commit date (edges):', dateStr, 'SHA:', sha);
+                                        if (dateStr) {
+                                            setCached(CACHE_KEY_COMMIT, dateStr);
+                                            setCached(CACHE_KEY_COMMIT_SHA, sha);
+                                            updateCommitDisplay(dateStr, sha);
+                                            return;
+                                        }
+                                    }
+                                }
+                            } catch (e) {
+                                console.warn('[GitHub] Hydration parse error:', e.message);
+                            }
+                        }
+
+                        // Also check for JSON embedded data
+                        const jsonMatch = html.match(/<script\s+type="application\/ld\+json"[^>]*>([^<]+)<\/script>/);
+                        console.log('[GitHub] JSON-LD match:', jsonMatch);
+                        if (jsonMatch && jsonMatch[1]) {
+                            try {
+                                const json = JSON.parse(jsonMatch[1]);
+                                console.log('[GitHub] JSON-LD parsed:', json);
+                                if (json.datePublished) {
+                                    console.log('[GitHub] Found datePublished:', json.datePublished);
+                                    setCached(CACHE_KEY_COMMIT, json.datePublished);
+                                    updateCommitDisplay(json.datePublished);
+                                    return;
+                                }
+                            } catch (e) {}
+                        }
+
+                        // Fallback: Look for direct commit JSON array pattern (GitHub may embed commit data inline)
+                        // Pattern matches: "oid":"SHA","url":".../commit/SHA","authoredDate":"2026-01-04T..."
+                        const directCommitMatch = html.match(/"oid":"([a-f0-9]+)","url":"[^"]*\/commit\/[a-f0-9]+","authoredDate":"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2}))"/);
+                        console.log('[GitHub] Direct commit match:', directCommitMatch);
+                        if (directCommitMatch && directCommitMatch[2]) {
+                            const sha = directCommitMatch[1];
+                            const dateStr = directCommitMatch[2];
+                            console.log('[GitHub] Found direct commit date:', dateStr, 'SHA:', sha);
+                            setCached(CACHE_KEY_COMMIT, dateStr);
+                            setCached(CACHE_KEY_COMMIT_SHA, sha);
+                            updateCommitDisplay(dateStr, sha);
+                            return;
+                        }
+
+                        for (let i = 0; i < patterns.length; i++) {
+                            const match = html.match(patterns[i]);
+                            console.log('[GitHub] Pattern', i, 'match:', match);
+                            if (match && match[1]) {
+                                const dateStr = match[1];
+                                console.log('[GitHub] Found date:', dateStr);
+                                setCached(CACHE_KEY_COMMIT, dateStr);
+                                updateCommitDisplay(dateStr, null);
+                                return;
+                            }
+                        }
+
+                        // Final fallback: search for ISO date pattern anywhere
+                        const isoDateMatch = html.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z/);
+                        console.log('[GitHub] ISO date fallback match:', isoDateMatch);
+                        if (isoDateMatch) {
+                            const dateStr = isoDateMatch[0];
+                            console.log('[GitHub] Found ISO date:', dateStr);
+                            setCached(CACHE_KEY_COMMIT, dateStr);
+                            updateCommitDisplay(dateStr, null);
+                            return;
+                        }
+                    }
+                } catch (e) {
+                    console.warn('[GitHub] Proxy failed:', proxy, e.message);
+                    continue;
+                }
+            }
+
+            console.log('[GitHub] All proxies failed');
+            showError(document.getElementById('stat-commit'));
+        }
+
+        // Initialize after DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(fetchLatestRelease, 100);
+                setTimeout(fetchLatestCommit, 100);
+            });
+        } else {
+            setTimeout(fetchLatestRelease, 100);
+            setTimeout(fetchLatestCommit, 100);
+        }
+    })();
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"></script>
     <script>

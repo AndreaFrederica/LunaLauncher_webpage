@@ -23,6 +23,10 @@
     "badge_modpack": "Modpack Management",
     "badge_p2p": "P2P Multiplayer",
     "badge_fluent": "Fluent Design",
+    "stats_release": "Release",
+    "stats_commit": "Develop",
+    "stats_none": "None",
+    "stats_dev_version": "Dev Build",
     "notice": "Early version: You may need to build it yourself or contact the developer for a test version."
   },
   "features": {

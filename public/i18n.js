@@ -200,6 +200,53 @@ const i18n = {
                 element.alt = translation;
             }
         });
+
+        // Update GitHub stats "None" text when language changes
+        const noneElements = document.querySelectorAll('[data-i18n-none]');
+        noneElements.forEach(element => {
+            const translation = this.getNestedTranslation(this.translations, 'hero.stats_none');
+            if (translation) {
+                element.textContent = translation;
+            }
+        });
+
+        // Update relative time dates when language changes
+        const commitStat = document.getElementById('stat-commit');
+        if (commitStat && !commitStat.classList.contains('loading') && !commitStat.classList.contains('empty')) {
+            const valueEl = commitStat.querySelector('.stat-value');
+            if (valueEl._commitDate) {
+                const sha = valueEl._commitSha;
+                const shortSha = sha ? sha.substring(0, 7) : '';
+                const relativeTime = this.formatRelativeTime(valueEl._commitDate);
+                valueEl.innerHTML = `<span class="commit-sha" title="${sha}">${shortSha}</span> ${relativeTime}`;
+            }
+        }
+    },
+
+    // Helper to format relative time
+    formatRelativeTime(dateStr) {
+        const date = new Date(dateStr);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const diffMinutes = Math.floor(diffMs / (1000 * 60));
+
+        if (diffDays > 0) {
+            return this.currentLang === 'zh-CN'
+                ? `${diffDays} 天前`
+                : `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+        } else if (diffHours > 0) {
+            return this.currentLang === 'zh-CN'
+                ? `${diffHours} 小时前`
+                : `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+        } else if (diffMinutes > 0) {
+            return this.currentLang === 'zh-CN'
+                ? `${diffMinutes} 分钟前`
+                : `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+        } else {
+            return this.currentLang === 'zh-CN' ? '刚刚' : 'just now';
+        }
     },
 
     // Get nested translation using dot notation

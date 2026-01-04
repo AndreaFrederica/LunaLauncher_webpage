@@ -23,6 +23,10 @@
     "badge_modpack": "整包管理",
     "badge_p2p": "P2P 联机",
     "badge_fluent": "Fluent 主题",
+    "stats_release": "Release",
+    "stats_commit": "Develop",
+    "stats_none": "暂无",
+    "stats_dev_version": "开发版本",
     "notice": "当前处于早期版本:可能需要自行构建,或联系开发者获取测试版本。"
   },
   "features": {
