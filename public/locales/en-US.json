@@ -1,229 +1,240 @@
 {
-  "lang": "en-US",
-  "meta": {
-    "description": "Luna Launcher: A lightweight, clean, and customizable Minecraft launcher focused on freedom and organization."
-  },
-  "nav": {
-    "features": "Features",
-    "get": "Get",
-    "community": "Community",
-    "build": "Build"
-  },
-  "page": {
-    "title": "Build Guide - Luna Launcher"
-  },
-  "hero": {
-    "title": "Lightweight, Clean, and Customizable Minecraft Launcher",
-    "description": "Focused on instance isolation and making it easier to use: manage modpacks, update resources, and keep each world and configuration separate.",
-    "cta_get": "Get Started",
-    "cta_releases": "Releases",
-    "cta_github": "GitHub",
-    "cta_prism": "Based on Prism Launcher",
-    "badge_instance": "Instance Isolation",
-    "badge_modpack": "Modpack Management",
-    "badge_p2p": "P2P Multiplayer",
-    "badge_fluent": "Fluent Design",
-    "stats_release": "Release",
-    "stats_commit": "Develop",
-    "stats_none": "None",
-    "stats_dev_version": "Dev Build",
-    "notice": "Early version: You may need to build it yourself or contact the developer for a test version."
-  },
-  "features": {
-    "title": "Features",
-    "lead": "Building on the Prism Launcher experience, making common tasks like installation, maintenance, and version switching easier.",
-    "modpack_title": "Modpack Management",
-    "modpack_desc": "Easily install and launch modpacks while keeping your instance directory clean. Reduce repetitive manual installation, update, and troubleshooting work.",
-    "download_title": "Download & Mirror Acceleration",
-    "download_desc": "Supports community mirror APIs (like BMCLAPI) for smoother downloads in China's network environment. BMCLAPI support is still being refined and may not be available in all scenarios.",
-    "download_badge": "WIP",
-    "instance_title": "Instance Isolation",
-    "instance_desc": "Each instance has independent mods, resource packs, and settings. Prevents old versions from resetting settings or accidentally corrupting worlds.",
-    "p2p_title": "P2P Multiplayer",
-    "p2p_desc": "Built-in support for <a href=\"https://github.com/burningtnt/Terracotta\" target=\"_blank\" rel=\"noopener noreferrer\">Terracotta</a> and <a href=\"https://github.com/ElicaseTech/YukariConnect\" target=\"_blank\" rel=\"noopener noreferrer\">YukariConnect</a> P2P multiplayer.<span data-i18n=\"features.p2p_desc_more\"> Play with friends without port forwarding or complex network setup. YukariConnect is intended as an alternative to the AGPL-licensed Terracotta.</span>",
-    "p2p_desc_more": "Play with friends without port forwarding or complex network setup. YukariConnect is intended as an alternative to the AGPL-licensed Terracotta.",
-    "server_title": "Server Preview",
-    "server_desc": "Quickly access server preview from the toolbar, view server status and player information in real-time, and connect to your favorite servers with one click.",
-    "server_mgmt_title": "Server Management",
-    "server_mgmt_badge": "WIP",
-    "server_mgmt_desc": "Launch and manage servers directly from the launcher, making it easy to play with friends. Suitable for small servers and casual multiplayer sessions."
-  },
-  "get": {
-    "title": "Get Started",
-    "lead": "Currently in early development: stable installation packages may not be available yet. Targeted at developers and early testers.",
-    "panel_build": "Recommended: Build and run it yourself following the build guide. You can also check Releases for preview builds.",
-    "panel_contact": "If you need a test version or encounter issues, feel free to contact the developer through Issues.",
-    "btn_build": "Build Guide",
-    "btn_releases": "View Releases",
-    "btn_issues": "Contact Developer",
-    "notice": "Note: Mirror API support (including BMCLAPI) is still being improved. If you encounter download issues, please provide feedback so we can improve."
-  },
-  "community": {
-    "title": "Community",
-    "lead": "We carefully read every piece of feedback and welcome contributions to development.",
-    "feedback_title": "Submit Feedback",
-    "feedback_desc": "Submit issues, feature requests, or UI suggestions to GitHub Issues, and include logs and reproduction steps when possible.",
-    "contribute_title": "Contribute Code & Design",
-    "contribute_desc": "Whether it's fixing a small bug or providing new icons and UI designs, all contributions are valuable."
-  },
-  "testimonials": {
-    "title": "User Reviews"
-  },
-  "build": {
-    "title": "Build Guide",
-    "lead": "This guide explains how to build Luna Launcher from source.",
-    "prerequisites": {
-      "title": "Prerequisites",
-      "git": "Git",
-      "java": "Java Development Kit 8 or later",
-      "cmake": "CMake 3.16 or later",
-      "qt": "Qt 6 (6.6.2 recommended) or Qt 5 (5.15.2 recommended)"
+    "lang": "en-US",
+    "meta": {
+        "description": "Luna Launcher: A lightweight, clean, and customizable Minecraft launcher focused on freedom and organization."
     },
-    "get_source": {
-      "title": "Get the Source",
-      "comment1": "cd LunaLauncher",
-      "note": "Note: Use --recursive to clone submodules (including website)."
+    "nav": {
+        "features": "Features",
+        "get": "Get",
+        "community": "Community",
+        "build": "Build"
     },
-    "windows": {
-      "title": "Building on Windows",
-      "msys2_auto": {
-        "title": "Automated Build: MSYS2 + GCC (Recommended)",
-        "desc": "Uses MSYS2's UCRT64 GCC toolchain with automated build scripts."
-      },
-      "msys2": {
-        "title": "Option A: MSYS2 + GCC (Recommended)",
-        "desc": "Uses MSYS2's UCRT64 GCC toolchain with automated build scripts.",
-        "m2m": {
-          "title": "Using Msys2Manager (m2m)",
-          "desc": "<a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">Msys2Manager (m2m)</a> is a CLI tool for managing MSYS2 environments. Download the latest release from <a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub Releases</a> and add it to your PATH.",
-          "comment1": "# Set JAVA_HOME",
-          "comment2": "# Bootstrap MSYS2 (first time only)",
-          "comment3": "# Configure and build",
-          "comment4": "# Install"
+    "page": {
+        "title": "Build Guide - Luna Launcher"
+    },
+    "hero": {
+        "title": "Lightweight, Clean, and Customizable Minecraft Launcher",
+        "description": "Focused on instance isolation and making it easier to use: manage modpacks, update resources, and keep each world and configuration separate.",
+        "cta_get": "Get Started",
+        "cta_releases": "Releases",
+        "cta_github": "GitHub",
+        "cta_prism": "Based on Prism Launcher",
+        "badge_instance": "Instance Isolation",
+        "badge_modpack": "Modpack Management",
+        "badge_p2p": "P2P Multiplayer",
+        "badge_fluent": "Fluent Design",
+        "stats_release": "Release",
+        "stats_commit": "Develop",
+        "stats_none": "None",
+        "stats_dev_version": "Dev Build",
+        "notice": "Early version: You may need to build it yourself or contact the developer for a test version."
+    },
+    "features": {
+        "title": "Features",
+        "lead": "Building on the Prism Launcher experience, making common tasks like installation, maintenance, and version switching easier.",
+        "modpack_title": "Modpack Management",
+        "modpack_desc": "Easily install and launch modpacks while keeping your instance directory clean. Reduce repetitive manual installation, update, and troubleshooting work.",
+        "download_title": "Download & Mirror Acceleration",
+        "download_desc": "Supports community mirror APIs (like BMCLAPI) for smoother downloads in China's network environment. BMCLAPI support is still being refined and may not be available in all scenarios.",
+        "download_badge": "WIP",
+        "instance_title": "Instance Isolation",
+        "instance_desc": "Each instance has independent mods, resource packs, and settings. Prevents old versions from resetting settings or accidentally corrupting worlds.",
+        "p2p_title": "P2P Multiplayer",
+        "p2p_desc": "Built-in support for <a href=\"https://github.com/burningtnt/Terracotta\" target=\"_blank\" rel=\"noopener noreferrer\">Terracotta</a> and <a href=\"https://github.com/ElicaseTech/YukariConnect\" target=\"_blank\" rel=\"noopener noreferrer\">YukariConnect</a> P2P multiplayer.<span data-i18n=\"features.p2p_desc_more\"> Play with friends without port forwarding or complex network setup. YukariConnect is intended as an alternative to the AGPL-licensed Terracotta.</span>",
+        "p2p_desc_more": "Play with friends without port forwarding or complex network setup. YukariConnect is intended as an alternative to the AGPL-licensed Terracotta.",
+        "server_title": "Server Preview",
+        "server_desc": "Quickly access server preview from the toolbar, view server status and player information in real-time, and connect to your favorite servers with one click.",
+        "server_mgmt_title": "Server Management",
+        "server_mgmt_badge": "WIP",
+        "server_mgmt_desc": "Launch and manage servers directly from the launcher, making it easy to play with friends. Suitable for small servers and casual multiplayer sessions."
+    },
+    "get": {
+        "title": "Get Started",
+        "lead": "Currently in early development: stable installation packages may not be available yet. Targeted at developers and early testers.",
+        "panel_build": "Recommended: Build and run it yourself following the build guide. You can also check Releases for preview builds.",
+        "panel_contact": "If you need a test version or encounter issues, feel free to contact the developer through Issues.",
+        "btn_build": "Build Guide",
+        "btn_releases": "View Releases",
+        "btn_issues": "Contact Developer",
+        "notice": "Note: Mirror API support (including BMCLAPI) is still being improved. If you encounter download issues, please provide feedback so we can improve."
+    },
+    "community": {
+        "title": "Community",
+        "lead": "We carefully read every piece of feedback and welcome contributions to development.",
+        "feedback_title": "Submit Feedback",
+        "feedback_desc": "Submit issues, feature requests, or UI suggestions to GitHub Issues, and include logs and reproduction steps when possible.",
+        "contribute_title": "Contribute Code & Design",
+        "contribute_desc": "Whether it's fixing a small bug or providing new icons and UI designs, all contributions are valuable."
+    },
+    "testimonials": {
+        "title": "User Reviews"
+    },
+    "build": {
+        "title": "Build Guide",
+        "lead": "This guide explains how to build Luna Launcher from source.",
+        "prerequisites": {
+            "title": "Prerequisites",
+            "git": "Git",
+            "java": "Java Development Kit 8 or later",
+            "cmake": "CMake 3.16 or later",
+            "qt": "Qt 6 (6.6.2 recommended) or Qt 5 (5.15.2 recommended)"
         },
-        "ps": {
-          "title": "Using PowerShell Scripts",
-          "comment1": "# Set JAVA_HOME",
-          "comment2": "# Initialize MSYS2 environment (first time only)",
-          "comment3": "# Configure and build",
-          "comment4": "# Install"
-        }
-      },
-      "msys2_manual": {
-        "title": "Manual Build: MSYS2 + GCC",
-        "desc": "CLANG64 or UCRT64 msystem are recommended. CLANG64 has faster compilation and fewer bugs.",
-        "prereq": {
-          "title": "Prepare MSYS2",
-          "step1": "Open MSYS2 shortcut from the Start menu",
-          "step2": "Install helper tools: <code>pacman -Syu pactoys git mingw-w64-ucrt-x86_64-binutils</code>",
-          "step3": "Use pacboy to install build dependencies: <code>pacboy -S toolchain:p cmake:p ninja:p qt6-base:p qt6-5compat:p qt6-svg:p qt6-imageformats:p quazip-qt6:p extra-cmake-modules:p ccache:p</code>",
-          "step4": "Or use Qt 5: <code>pacboy -S toolchain:p cmake:p ninja:p qt5-base:p qt5-svg:p qt5-imageformats:p quazip-qt5:p extra-cmake-modules:p ccache:p</code>"
+        "get_source": {
+            "title": "Get the Source",
+            "comment1": "cd LunaLauncher",
+            "note": "Note: Use --recursive to clone submodules (including website)."
         },
-        "compile": {
-          "title": "Compile from command line",
-          "comment1": "# Enter source directory",
-          "comment2": "# Configure CMake (Debug build)",
-          "comment3": "# Build",
-          "comment4": "# Install",
-          "comment5": "# Portable build (data stored in app directory)"
+        "windows": {
+            "title": "Building on Windows",
+            "msys2_auto": {
+                "title": "Automated Build: MSYS2 + GCC (Recommended)",
+                "desc": "Uses MSYS2's UCRT64 GCC toolchain with automated build scripts."
+            },
+            "msys2": {
+                "title": "Option A: MSYS2 + GCC (Recommended)",
+                "desc": "Uses MSYS2's UCRT64 GCC toolchain with automated build scripts.",
+                "m2m": {
+                    "title": "Using Msys2Manager (m2m)",
+                    "desc": "<a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">Msys2Manager (m2m)</a> is a CLI tool for managing MSYS2 environments. Download the latest release from <a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub Releases</a> and add it to your PATH.",
+                    "comment1": "# Set JAVA_HOME",
+                    "comment2": "# Bootstrap MSYS2 (first time only)",
+                    "comment3": "# Configure and build",
+                    "comment4": "# Install"
+                },
+                "ps": {
+                    "title": "Using PowerShell Scripts",
+                    "comment1": "# Set JAVA_HOME",
+                    "comment2": "# Initialize MSYS2 environment (first time only)",
+                    "comment3": "# Configure and build",
+                    "comment4": "# Install"
+                }
+            },
+            "msys2_manual": {
+                "title": "Manual Build: MSYS2 + GCC",
+                "desc": "CLANG64 or UCRT64 msystem are recommended. CLANG64 has faster compilation and fewer bugs.",
+                "prereq": {
+                    "title": "Prepare MSYS2",
+                    "step1": "Open MSYS2 shortcut from the Start menu",
+                    "step2": "Install helper tools: <code>pacman -Syu pactoys git mingw-w64-ucrt-x86_64-binutils</code>",
+                    "step3": "Use pacboy to install build dependencies: <code>pacboy -S toolchain:p cmake:p ninja:p qt6-base:p qt6-5compat:p qt6-svg:p qt6-imageformats:p quazip-qt6:p extra-cmake-modules:p ccache:p</code>",
+                    "step4": "Or use Qt 5: <code>pacboy -S toolchain:p cmake:p ninja:p qt5-base:p qt5-svg:p qt5-imageformats:p quazip-qt5:p extra-cmake-modules:p ccache:p</code>"
+                },
+                "compile": {
+                    "title": "Compile from command line",
+                    "comment1": "# Enter source directory",
+                    "comment2": "# Configure CMake (Debug build)",
+                    "comment3": "# Build",
+                    "comment4": "# Install",
+                    "comment5": "# Portable build (data stored in app directory)"
+                },
+                "note": "Note: For Qt 5 builds, you need to manually copy OpenSSL DLLs: <code>cp /ucrt64/bin/libcrypto-1_1-x64.dll /ucrt64/bin/libssl-1_1-x64.dll install</code>"
+            },
+            "msvc_auto": {
+                "title": "Automated Build: Pixi + MSVC",
+                "desc": "MSVC only; run from x64 Native Tools Command Prompt."
+            },
+            "msvc": {
+                "title": "Option B: Pixi + MSVC",
+                "desc": "Uses Pixi with MSVC toolchain. Run from x64 Native Tools Command Prompt.",
+                "comment1": "# Check / configure MSVC",
+                "comment2": "# Install Qt",
+                "comment3": "# Install vcpkg",
+                "comment4": "# Configure",
+                "comment5": "# Build",
+                "comment6": "# Install"
+            },
+            "msvc_manual": {
+                "title": "Manual Build: MSVC",
+                "prereq": {
+                    "title": "Dependencies",
+                    "vs": "Visual Studio - Run from \"x64 Native Tools Command Prompt\"",
+                    "java": "Java Development Kit 8 or later",
+                    "qt": "Qt 6.6.2 (recommended) or Qt 5.15.2"
+                },
+                "compile": {
+                    "title": "Compile from command line",
+                    "comment1": "# Configure CMake (adjust Qt path)",
+                    "comment2": "# Build (Debug)",
+                    "comment3": "# Install",
+                    "comment4": "# Portable build"
+                },
+                "note": "Note: For Qt 5 builds, you need to manually copy OpenSSL DLLs: <code>robocopy C:\\Qt\\Tools\\OpenSSL\\Win_x64\\bin\\ install libcrypto-1_1-x64.dll libssl-1_1-x64.dll</code>"
+            }
         },
-        "note": "Note: For Qt 5 builds, you need to manually copy OpenSSL DLLs: <code>cp /ucrt64/bin/libcrypto-1_1-x64.dll /ucrt64/bin/libssl-1_1-x64.dll install</code>"
-      },
-      "msvc_auto": {
-        "title": "Automated Build: Pixi + MSVC",
-        "desc": "MSVC only; run from x64 Native Tools Command Prompt."
-      },
-      "msvc": {
-        "title": "Option B: Pixi + MSVC",
-        "desc": "Uses Pixi with MSVC toolchain. Run from x64 Native Tools Command Prompt.",
-        "comment1": "# Check / configure MSVC",
-        "comment2": "# Install Qt",
-        "comment3": "# Install vcpkg",
-        "comment4": "# Configure",
-        "comment5": "# Build",
-        "comment6": "# Install"
-      },
-      "msvc_manual": {
-        "title": "Manual Build: MSVC",
-        "prereq": {
-          "title": "Dependencies",
-          "vs": "Visual Studio - Run from \"x64 Native Tools Command Prompt\"",
-          "java": "Java Development Kit 8 or later",
-          "qt": "Qt 6.6.2 (recommended) or Qt 5.15.2"
+        "linux": {
+            "title": "Building on Linux",
+            "prereq": {
+                "title": "Build Dependencies",
+                "compiler": "C++ compiler with C++17 support",
+                "qt": "Qt 6.0+ or Qt 5.12+ (<code>qt6-base-dev qt6-5compat-dev</code> or <code>qtbase5-dev</code>)",
+                "cmake": "cmake 3.15+ (<code>cmake</code>)",
+                "ninja": "ninja (<code>ninja-build</code>)",
+                "ecm": "extra-cmake-modules",
+                "zlib": "zlib (<code>zlib1g-dev</code>)",
+                "java": "Java JDK (<code>openjdk-17-jdk</code>)",
+                "gl": "GL headers (<code>libgl1-mesa-dev</code>)"
+            },
+            "portable": {
+                "title": "Build Portable Version"
+            },
+            "system": {
+                "title": "Build and Install to System"
+            },
+            "system_note": "Use <code>/usr</code> when building Linux packages, <code>/usr/local</code> for personal builds."
         },
-        "compile": {
-          "title": "Compile from command line",
-          "comment1": "# Configure CMake (adjust Qt path)",
-          "comment2": "# Build (Debug)",
-          "comment3": "# Install",
-          "comment4": "# Portable build"
+        "macos": {
+            "title": "Building on macOS",
+            "prereq": {
+                "title": "Install Prerequisites",
+                "xcode": "XCode Command Line tools: <code>xcode-select --install</code>",
+                "cmake": "CMake: <a href=\"https://cmake.org/download/\" target=\"_blank\" rel=\"noopener noreferrer\">cmake.org</a>",
+                "ecm": "extra-cmake-modules",
+                "java": "JDK 8: <a href=\"https://adoptium.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Adoptium</a>",
+                "qt": "Qt 6 (recommended) or Qt 5.12+"
+            },
+            "homebrew": {
+                "title": "Install using Homebrew"
+            },
+            "build": {
+                "title": "Build"
+            },
+            "sign_note": "Note: The final app bundle may not run due to code signing issues. Use <code>codesign -fs -</code> to fix."
         },
-        "note": "Note: For Qt 5 builds, you need to manually copy OpenSSL DLLs: <code>robocopy C:\\Qt\\Tools\\OpenSSL\\Win_x64\\bin\\ install libcrypto-1_1-x64.dll libssl-1_1-x64.dll</code>"
-      }
+        "output": {
+            "title": "Build Output",
+            "install": "Standard build: <code>install/</code> directory",
+            "portable": "Portable build: use <code>--component portable</code>"
+        },
+        "upstream": {
+            "title": "Upstream Reference",
+            "desc": "Luna Launcher is based on Prism Launcher. For more detailed build instructions, refer to the upstream documentation:",
+            "windows": "Windows Build Instructions",
+            "linux": "Linux Build Instructions",
+            "macos": "macOS Build Instructions"
+        },
+        "back": "Back to Home",
+        "help": "Need Help?"
     },
-    "linux": {
-      "title": "Building on Linux",
-      "prereq": {
-        "title": "Build Dependencies",
-        "compiler": "C++ compiler with C++17 support",
-        "qt": "Qt 6.0+ or Qt 5.12+ (<code>qt6-base-dev qt6-5compat-dev</code> or <code>qtbase5-dev</code>)",
-        "cmake": "cmake 3.15+ (<code>cmake</code>)",
-        "ninja": "ninja (<code>ninja-build</code>)",
-        "ecm": "extra-cmake-modules",
-        "zlib": "zlib (<code>zlib1g-dev</code>)",
-        "java": "Java JDK (<code>openjdk-17-jdk</code>)",
-        "gl": "GL headers (<code>libgl1-mesa-dev</code>)"
-      },
-      "portable": {
-        "title": "Build Portable Version"
-      },
-      "system": {
-        "title": "Build and Install to System"
-      },
-      "system_note": "Use <code>/usr</code> when building Linux packages, <code>/usr/local</code> for personal builds."
+    "footer": {
+        "copyright": "© 2025-2026 Luna Launcher Project",
+        "home": "Home",
+        "github": "GitHub",
+        "releases": "Releases",
+        "issues": "Issues",
+        "disclaimer": "Luna Launcher is an independent fork of Prism Launcher and is not affiliated with or endorsed by the Prism Launcher project."
     },
-    "macos": {
-      "title": "Building on macOS",
-      "prereq": {
-        "title": "Install Prerequisites",
-        "xcode": "XCode Command Line tools: <code>xcode-select --install</code>",
-        "cmake": "CMake: <a href=\"https://cmake.org/download/\" target=\"_blank\" rel=\"noopener noreferrer\">cmake.org</a>",
-        "ecm": "extra-cmake-modules",
-        "java": "JDK 8: <a href=\"https://adoptium.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Adoptium</a>",
-        "qt": "Qt 6 (recommended) or Qt 5.12+"
-      },
-      "homebrew": {
-        "title": "Install using Homebrew"
-      },
-      "build": {
-        "title": "Build"
-      },
-      "sign_note": "Note: The final app bundle may not run due to code signing issues. Use <code>codesign -fs -</code> to fix."
+    "language": {
+        "select": "Select Language"
     },
-    "output": {
-      "title": "Build Output",
-      "install": "Standard build: <code>install/</code> directory",
-      "portable": "Portable build: use <code>--component portable</code>"
-    },
-    "upstream": {
-      "title": "Upstream Reference",
-      "desc": "Luna Launcher is based on Prism Launcher. For more detailed build instructions, refer to the upstream documentation:",
-      "windows": "Windows Build Instructions",
-      "linux": "Linux Build Instructions",
-      "macos": "macOS Build Instructions"
-    },
-    "back": "Back to Home",
-    "help": "Need Help?"
-  },
-  "footer": {
-    "copyright": "© 2025-2026 Luna Launcher Project",
-    "home": "Home",
-    "github": "GitHub",
-    "releases": "Releases",
-    "issues": "Issues",
-    "disclaimer": "Luna Launcher is an independent fork of Prism Launcher and is not affiliated with or endorsed by the Prism Launcher project."
-  },
-  "language": {
-    "select": "Select Language"
-  }
+    "oauth": {
+        "title": "Login Successful",
+        "success_title": "Login Successful",
+        "error_title": "Login Failed",
+        "error_message": "An error occurred during authentication",
+        "question_title": "Something's Wrong",
+        "question_message": "Something may have gone wrong",
+        "redirecting": "Returning to Luna Launcher...",
+        "wait": "Please wait",
+        "manual_instruction": "If the page doesn't redirect automatically, please close this window manually."
+    }
 }

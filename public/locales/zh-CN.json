@@ -1,229 +1,240 @@
 {
-  "lang": "zh-CN",
-  "meta": {
-    "description": "Luna Launcher:专注自由与整洁的 Minecraft 启动器。"
-  },
-  "nav": {
-    "features": "特性",
-    "get": "获取",
-    "community": "参与",
-    "build": "构建"
-  },
-  "page": {
-    "title": "构建指南 - Luna Launcher"
-  },
-  "hero": {
-    "title": "轻量、整洁、可定制的 Minecraft 启动器",
-    "description": "以实例隔离为核心,专注\"用起来更省心\":管理整包、更新资源、保持每个世界与配置互不干扰。",
-    "cta_get": "获取与使用",
-    "cta_releases": "Releases",
-    "cta_github": "GitHub",
-    "cta_prism": "参考 Prism Launcher",
-    "badge_instance": "实例隔离",
-    "badge_modpack": "整包管理",
-    "badge_p2p": "P2P 联机",
-    "badge_fluent": "Fluent 主题",
-    "stats_release": "Release",
-    "stats_commit": "Develop",
-    "stats_none": "暂无",
-    "stats_dev_version": "开发版本",
-    "notice": "当前处于早期版本:可能需要自行构建,或联系开发者获取测试版本。"
-  },
-  "features": {
-    "title": "特性",
-    "lead": "参考 Prism Launcher 的使用体验,把常见的\"安装、维护、切版本\"流程做得更省心。",
-    "modpack_title": "整包管理",
-    "modpack_desc": "更轻松地安装与启动整包,同时保持实例目录整洁。减少手动安装、更新与排障的重复劳动。",
-    "download_title": "下载与镜像加速",
-    "download_desc": "支持社区镜像 API(例如 BMCLAPI),让在国内网络环境下的下载更顺畅。BMCLAPI 支持仍在完善,部分场景可能不可用。",
-    "download_badge": "开发中",
-    "instance_title": "实例隔离",
-    "instance_desc": "每个实例都有独立的 mods、资源包与设置。避免旧版本启动导致设置重置或误操作破坏世界。",
-    "p2p_title": "P2P 联机",
-    "p2p_desc": "内置支持 <a href=\"https://github.com/burningtnt/Terracotta\" target=\"_blank\" rel=\"noopener noreferrer\">陶瓦联机 (Terracotta)</a> 和 <a href=\"https://github.com/ElicaseTech/YukariConnect\" target=\"_blank\" rel=\"noopener noreferrer\">YukariConnect</a> P2P 联机功能。<span data-i18n=\"features.p2p_desc_more\">无需端口映射或复杂的网络配置即可与朋友一起游戏。YukariConnect 旨在作为 AGPL 许可的陶瓦联机的替代实现。</span>",
-    "p2p_desc_more": "无需端口映射或复杂的网络配置即可与朋友一起游戏。YukariConnect 旨在作为 AGPL 许可的陶瓦联机的替代实现。",
-    "server_title": "服务器预览",
-    "server_desc": "从工具栏快速进入服务器预览，实时查看服务器状态和玩家信息，一键连接到常玩的服务器。",
-    "server_mgmt_title": "服务端管理",
-    "server_mgmt_badge": "开发中",
-    "server_mgmt_desc": "让启动器也能启动服务端，方便与朋友进行多人游戏。适合小型服务器和临时联机场景。"
-  },
-  "get": {
-    "title": "获取与使用",
-    "lead": "当前处于早期版本阶段:可能没有稳定安装包,面向开发者与早期测试者。",
-    "panel_build": "推荐方式:按照构建指南自行编译运行。也可以在 Releases 查看是否提供预览构建。",
-    "panel_contact": "如果你需要测试版本或遇到问题,欢迎通过 Issues 联系开发者。",
-    "btn_build": "构建指南",
-    "btn_releases": "查看 Releases",
-    "btn_issues": "联系开发者",
-    "notice": "提示:镜像 API(含 BMCLAPI)支持仍在完善;如果你遇到下载异常,请优先反馈问题以便我们改进。"
-  },
-  "community": {
-    "title": "参与",
-    "lead": "我们会认真阅读每一条反馈,也欢迎一起参与开发。",
-    "feedback_title": "提交反馈",
-    "feedback_desc": "把你遇到的问题、想要的功能、或界面建议提交到 GitHub Issues,并尽量附上日志与复现步骤。",
-    "contribute_title": "贡献代码与设计",
-    "contribute_desc": "无论是改一个小 bug,还是提供新图标与界面稿,都很有价值。"
-  },
-  "testimonials": {
-    "title": "用户评价"
-  },
-  "build": {
-    "title": "构建指南",
-    "lead": "本文介绍如何从源代码构建 Luna Launcher。",
-    "prerequisites": {
-      "title": "前置要求",
-      "git": "Git",
-      "java": "Java Development Kit 8 或更高版本",
-      "cmake": "CMake 3.16 或更高版本",
-      "qt": "Qt 6 (推荐 6.6.2) 或 Qt 5 (推荐 5.15.2)"
+    "lang": "zh-CN",
+    "meta": {
+        "description": "Luna Launcher:专注自由与整洁的 Minecraft 启动器。"
     },
-    "get_source": {
-      "title": "获取源代码",
-      "comment1": "cd LunaLauncher",
-      "note": "注意：使用 --recursive 参数来克隆子模块（包含 website）。"
+    "nav": {
+        "features": "特性",
+        "get": "获取",
+        "community": "参与",
+        "build": "构建"
     },
-    "windows": {
-      "title": "Windows 构建",
-      "msys2_auto": {
-        "title": "自动化构建：MSYS2 + GCC（推荐）",
-        "desc": "使用 MSYS2 的 UCRT64 GCC 工具链，通过自动化脚本构建。"
-      },
-      "msys2": {
-        "title": "选项 A：MSYS2 + GCC（推荐）",
-        "desc": "使用 MSYS2 的 UCRT64 GCC 工具链，通过自动化脚本构建。",
-        "m2m": {
-          "title": "使用 Msys2Manager (m2m)",
-          "desc": "<a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">Msys2Manager (m2m)</a> 是专门用于管理 MSYS2 环境的 CLI 工具。从 <a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub Releases</a> 下载最新版本并添加到 PATH。",
-          "comment1": "# 设置 JAVA_HOME",
-          "comment2": "# 引导安装 MSYS2（仅首次）",
-          "comment3": "# 配置和构建",
-          "comment4": "# 安装"
+    "page": {
+        "title": "构建指南 - Luna Launcher"
+    },
+    "hero": {
+        "title": "轻量、整洁、可定制的 Minecraft 启动器",
+        "description": "以实例隔离为核心,专注\"用起来更省心\":管理整包、更新资源、保持每个世界与配置互不干扰。",
+        "cta_get": "获取与使用",
+        "cta_releases": "Releases",
+        "cta_github": "GitHub",
+        "cta_prism": "参考 Prism Launcher",
+        "badge_instance": "实例隔离",
+        "badge_modpack": "整包管理",
+        "badge_p2p": "P2P 联机",
+        "badge_fluent": "Fluent 主题",
+        "stats_release": "Release",
+        "stats_commit": "Develop",
+        "stats_none": "暂无",
+        "stats_dev_version": "开发版本",
+        "notice": "当前处于早期版本:可能需要自行构建,或联系开发者获取测试版本。"
+    },
+    "features": {
+        "title": "特性",
+        "lead": "参考 Prism Launcher 的使用体验,把常见的\"安装、维护、切版本\"流程做得更省心。",
+        "modpack_title": "整包管理",
+        "modpack_desc": "更轻松地安装与启动整包,同时保持实例目录整洁。减少手动安装、更新与排障的重复劳动。",
+        "download_title": "下载与镜像加速",
+        "download_desc": "支持社区镜像 API(例如 BMCLAPI),让在国内网络环境下的下载更顺畅。BMCLAPI 支持仍在完善,部分场景可能不可用。",
+        "download_badge": "开发中",
+        "instance_title": "实例隔离",
+        "instance_desc": "每个实例都有独立的 mods、资源包与设置。避免旧版本启动导致设置重置或误操作破坏世界。",
+        "p2p_title": "P2P 联机",
+        "p2p_desc": "内置支持 <a href=\"https://github.com/burningtnt/Terracotta\" target=\"_blank\" rel=\"noopener noreferrer\">陶瓦联机 (Terracotta)</a> 和 <a href=\"https://github.com/ElicaseTech/YukariConnect\" target=\"_blank\" rel=\"noopener noreferrer\">YukariConnect</a> P2P 联机功能。<span data-i18n=\"features.p2p_desc_more\">无需端口映射或复杂的网络配置即可与朋友一起游戏。YukariConnect 旨在作为 AGPL 许可的陶瓦联机的替代实现。</span>",
+        "p2p_desc_more": "无需端口映射或复杂的网络配置即可与朋友一起游戏。YukariConnect 旨在作为 AGPL 许可的陶瓦联机的替代实现。",
+        "server_title": "服务器预览",
+        "server_desc": "从工具栏快速进入服务器预览，实时查看服务器状态和玩家信息，一键连接到常玩的服务器。",
+        "server_mgmt_title": "服务端管理",
+        "server_mgmt_badge": "开发中",
+        "server_mgmt_desc": "让启动器也能启动服务端，方便与朋友进行多人游戏。适合小型服务器和临时联机场景。"
+    },
+    "get": {
+        "title": "获取与使用",
+        "lead": "当前处于早期版本阶段:可能没有稳定安装包,面向开发者与早期测试者。",
+        "panel_build": "推荐方式:按照构建指南自行编译运行。也可以在 Releases 查看是否提供预览构建。",
+        "panel_contact": "如果你需要测试版本或遇到问题,欢迎通过 Issues 联系开发者。",
+        "btn_build": "构建指南",
+        "btn_releases": "查看 Releases",
+        "btn_issues": "联系开发者",
+        "notice": "提示:镜像 API(含 BMCLAPI)支持仍在完善;如果你遇到下载异常,请优先反馈问题以便我们改进。"
+    },
+    "community": {
+        "title": "参与",
+        "lead": "我们会认真阅读每一条反馈,也欢迎一起参与开发。",
+        "feedback_title": "提交反馈",
+        "feedback_desc": "把你遇到的问题、想要的功能、或界面建议提交到 GitHub Issues,并尽量附上日志与复现步骤。",
+        "contribute_title": "贡献代码与设计",
+        "contribute_desc": "无论是改一个小 bug,还是提供新图标与界面稿,都很有价值。"
+    },
+    "testimonials": {
+        "title": "用户评价"
+    },
+    "build": {
+        "title": "构建指南",
+        "lead": "本文介绍如何从源代码构建 Luna Launcher。",
+        "prerequisites": {
+            "title": "前置要求",
+            "git": "Git",
+            "java": "Java Development Kit 8 或更高版本",
+            "cmake": "CMake 3.16 或更高版本",
+            "qt": "Qt 6 (推荐 6.6.2) 或 Qt 5 (推荐 5.15.2)"
         },
-        "ps": {
-          "title": "使用 PowerShell 脚本",
-          "comment1": "# 设置 JAVA_HOME",
-          "comment2": "# 初始化 MSYS2 环境（仅首次）",
-          "comment3": "# 配置和构建",
-          "comment4": "# 安装"
-        }
-      },
-      "msys2_manual": {
-        "title": "手动构建：MSYS2 + GCC",
-        "desc": "推荐使用 CLANG64 或 UCRT64 msystem，CLANG64 编译速度更快且 bug 更少。",
-        "prereq": {
-          "title": "准备 MSYS2",
-          "step1": "从开始菜单打开 MSYS2 快捷方式",
-          "step2": "安装辅助工具：<code>pacman -Syu pactoys git mingw-w64-ucrt-x86_64-binutils</code>",
-          "step3": "使用 pacboy 安装构建依赖：<code>pacboy -S toolchain:p cmake:p ninja:p qt6-base:p qt6-5compat:p qt6-svg:p qt6-imageformats:p quazip-qt6:p extra-cmake-modules:p ccache:p</code>",
-          "step4": "或使用 Qt 5：<code>pacboy -S toolchain:p cmake:p ninja:p qt5-base:p qt5-svg:p qt5-imageformats:p quazip-qt5:p extra-cmake-modules:p ccache:p</code>"
+        "get_source": {
+            "title": "获取源代码",
+            "comment1": "cd LunaLauncher",
+            "note": "注意：使用 --recursive 参数来克隆子模块（包含 website）。"
         },
-        "compile": {
-          "title": "从命令行编译",
-          "comment1": "# 进入源代码目录",
-          "comment2": "# 配置 CMake（Debug 构建）",
-          "comment3": "# 构建",
-          "comment4": "# 安装",
-          "comment5": "# 便携版（数据存储在应用目录）"
+        "windows": {
+            "title": "Windows 构建",
+            "msys2_auto": {
+                "title": "自动化构建：MSYS2 + GCC（推荐）",
+                "desc": "使用 MSYS2 的 UCRT64 GCC 工具链，通过自动化脚本构建。"
+            },
+            "msys2": {
+                "title": "选项 A：MSYS2 + GCC（推荐）",
+                "desc": "使用 MSYS2 的 UCRT64 GCC 工具链，通过自动化脚本构建。",
+                "m2m": {
+                    "title": "使用 Msys2Manager (m2m)",
+                    "desc": "<a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">Msys2Manager (m2m)</a> 是专门用于管理 MSYS2 环境的 CLI 工具。从 <a href=\"https://github.com/AndreaFrederica/Msys2Manager/releases\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub Releases</a> 下载最新版本并添加到 PATH。",
+                    "comment1": "# 设置 JAVA_HOME",
+                    "comment2": "# 引导安装 MSYS2（仅首次）",
+                    "comment3": "# 配置和构建",
+                    "comment4": "# 安装"
+                },
+                "ps": {
+                    "title": "使用 PowerShell 脚本",
+                    "comment1": "# 设置 JAVA_HOME",
+                    "comment2": "# 初始化 MSYS2 环境（仅首次）",
+                    "comment3": "# 配置和构建",
+                    "comment4": "# 安装"
+                }
+            },
+            "msys2_manual": {
+                "title": "手动构建：MSYS2 + GCC",
+                "desc": "推荐使用 CLANG64 或 UCRT64 msystem，CLANG64 编译速度更快且 bug 更少。",
+                "prereq": {
+                    "title": "准备 MSYS2",
+                    "step1": "从开始菜单打开 MSYS2 快捷方式",
+                    "step2": "安装辅助工具：<code>pacman -Syu pactoys git mingw-w64-ucrt-x86_64-binutils</code>",
+                    "step3": "使用 pacboy 安装构建依赖：<code>pacboy -S toolchain:p cmake:p ninja:p qt6-base:p qt6-5compat:p qt6-svg:p qt6-imageformats:p quazip-qt6:p extra-cmake-modules:p ccache:p</code>",
+                    "step4": "或使用 Qt 5：<code>pacboy -S toolchain:p cmake:p ninja:p qt5-base:p qt5-svg:p qt5-imageformats:p quazip-qt5:p extra-cmake-modules:p ccache:p</code>"
+                },
+                "compile": {
+                    "title": "从命令行编译",
+                    "comment1": "# 进入源代码目录",
+                    "comment2": "# 配置 CMake（Debug 构建）",
+                    "comment3": "# 构建",
+                    "comment4": "# 安装",
+                    "comment5": "# 便携版（数据存储在应用目录）"
+                },
+                "note": "注意：Qt 5 构建时需要手动复制 OpenSSL DLL：<code>cp /ucrt64/bin/libcrypto-1_1-x64.dll /ucrt64/bin/libssl-1_1-x64.dll install</code>"
+            },
+            "msvc_auto": {
+                "title": "自动化构建：Pixi + MSVC",
+                "desc": "仅需 MSVC，建议从 x64 Native Tools Command Prompt 运行。"
+            },
+            "msvc": {
+                "title": "选项 B：Pixi + MSVC",
+                "desc": "使用 Pixi 配合 MSVC 工具链。需要从 x64 Native Tools Command Prompt 运行。",
+                "comment1": "# 检查/配置 MSVC 环境",
+                "comment2": "# 安装 Qt",
+                "comment3": "# 安装 vcpkg",
+                "comment4": "# 配置",
+                "comment5": "# 构建",
+                "comment6": "# 安装"
+            },
+            "msvc_manual": {
+                "title": "手动构建：MSVC",
+                "prereq": {
+                    "title": "依赖项",
+                    "vs": "Visual Studio - 从\"x64 Native Tools Command Prompt\"运行",
+                    "java": "Java Development Kit 8 或更高版本",
+                    "qt": "Qt 6.6.2 (推荐) 或 Qt 5.15.2"
+                },
+                "compile": {
+                    "title": "从命令行编译",
+                    "comment1": "# 配置 CMake（调整 Qt 路径）",
+                    "comment2": "# 构建（Debug）",
+                    "comment3": "# 安装",
+                    "comment4": "# 便携版"
+                },
+                "note": "注意：Qt 5 构建时需要手动复制 OpenSSL DLL：<code>robocopy C:\\Qt\\Tools\\OpenSSL\\Win_x64\\bin\\ install libcrypto-1_1-x64.dll libssl-1_1-x64.dll</code>"
+            }
         },
-        "note": "注意：Qt 5 构建时需要手动复制 OpenSSL DLL：<code>cp /ucrt64/bin/libcrypto-1_1-x64.dll /ucrt64/bin/libssl-1_1-x64.dll install</code>"
-      },
-      "msvc_auto": {
-        "title": "自动化构建：Pixi + MSVC",
-        "desc": "仅需 MSVC，建议从 x64 Native Tools Command Prompt 运行。"
-      },
-      "msvc": {
-        "title": "选项 B：Pixi + MSVC",
-        "desc": "使用 Pixi 配合 MSVC 工具链。需要从 x64 Native Tools Command Prompt 运行。",
-        "comment1": "# 检查/配置 MSVC 环境",
-        "comment2": "# 安装 Qt",
-        "comment3": "# 安装 vcpkg",
-        "comment4": "# 配置",
-        "comment5": "# 构建",
-        "comment6": "# 安装"
-      },
-      "msvc_manual": {
-        "title": "手动构建：MSVC",
-        "prereq": {
-          "title": "依赖项",
-          "vs": "Visual Studio - 从\"x64 Native Tools Command Prompt\"运行",
-          "java": "Java Development Kit 8 或更高版本",
-          "qt": "Qt 6.6.2 (推荐) 或 Qt 5.15.2"
+        "linux": {
+            "title": "Linux 构建",
+            "prereq": {
+                "title": "构建依赖",
+                "compiler": "支持 C++17 的 C++ 编译器",
+                "qt": "Qt 6.0+ 或 Qt 5.12+ (<code>qt6-base-dev qt6-5compat-dev</code> 或 <code>qtbase5-dev</code>)",
+                "cmake": "cmake 3.15+ (<code>cmake</code>)",
+                "ninja": "ninja (<code>ninja-build</code>)",
+                "ecm": "extra-cmake-modules",
+                "zlib": "zlib (<code>zlib1g-dev</code>)",
+                "java": "Java JDK (<code>openjdk-17-jdk</code>)",
+                "gl": "GL 头文件 (<code>libgl1-mesa-dev</code>)"
+            },
+            "portable": {
+                "title": "构建便携版"
+            },
+            "system": {
+                "title": "构建并安装到系统"
+            },
+            "system_note": "构建 Linux 软件包时使用 <code>/usr</code>，个人构建使用 <code>/usr/local</code>。"
         },
-        "compile": {
-          "title": "从命令行编译",
-          "comment1": "# 配置 CMake（调整 Qt 路径）",
-          "comment2": "# 构建（Debug）",
-          "comment3": "# 安装",
-          "comment4": "# 便携版"
+        "macos": {
+            "title": "macOS 构建",
+            "prereq": {
+                "title": "安装前置要求",
+                "xcode": "XCode Command Line tools：<code>xcode-select --install</code>",
+                "cmake": "CMake：<a href=\"https://cmake.org/download/\" target=\"_blank\" rel=\"noopener noreferrer\">cmake.org</a>",
+                "ecm": "extra-cmake-modules",
+                "java": "JDK 8：<a href=\"https://adoptium.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Adoptium</a>",
+                "qt": "Qt 6 (推荐) 或 Qt 5.12+"
+            },
+            "homebrew": {
+                "title": "使用 Homebrew 安装"
+            },
+            "build": {
+                "title": "构建"
+            },
+            "sign_note": "注意：最终应用包可能由于代码签名问题无法运行，需要使用 <code>codesign -fs -</code> 修复。"
         },
-        "note": "注意：Qt 5 构建时需要手动复制 OpenSSL DLL：<code>robocopy C:\\Qt\\Tools\\OpenSSL\\Win_x64\\bin\\ install libcrypto-1_1-x64.dll libssl-1_1-x64.dll</code>"
-      }
+        "output": {
+            "title": "构建输出",
+            "install": "标准构建：<code>install/</code> 目录",
+            "portable": "便携版：使用 <code>--component portable</code> 参数"
+        },
+        "upstream": {
+            "title": "上游参考",
+            "desc": "Luna Launcher 基于 Prism Launcher，更详细的构建说明可以参考上游文档：",
+            "windows": "Windows 构建说明",
+            "linux": "Linux 构建说明",
+            "macos": "macOS 构建说明"
+        },
+        "back": "返回首页",
+        "help": "需要帮助？"
     },
-    "linux": {
-      "title": "Linux 构建",
-      "prereq": {
-        "title": "构建依赖",
-        "compiler": "支持 C++17 的 C++ 编译器",
-        "qt": "Qt 6.0+ 或 Qt 5.12+ (<code>qt6-base-dev qt6-5compat-dev</code> 或 <code>qtbase5-dev</code>)",
-        "cmake": "cmake 3.15+ (<code>cmake</code>)",
-        "ninja": "ninja (<code>ninja-build</code>)",
-        "ecm": "extra-cmake-modules",
-        "zlib": "zlib (<code>zlib1g-dev</code>)",
-        "java": "Java JDK (<code>openjdk-17-jdk</code>)",
-        "gl": "GL 头文件 (<code>libgl1-mesa-dev</code>)"
-      },
-      "portable": {
-        "title": "构建便携版"
-      },
-      "system": {
-        "title": "构建并安装到系统"
-      },
-      "system_note": "构建 Linux 软件包时使用 <code>/usr</code>，个人构建使用 <code>/usr/local</code>。"
+    "footer": {
+        "copyright": "© 2025-2026 Luna Launcher Project",
+        "home": "首页",
+        "github": "GitHub",
+        "releases": "Releases",
+        "issues": "Issues",
+        "disclaimer": "Luna Launcher 是一个独立的 Prism Launcher 分支项目,不隶属于、也不代表 Prism Launcher 项目。"
     },
-    "macos": {
-      "title": "macOS 构建",
-      "prereq": {
-        "title": "安装前置要求",
-        "xcode": "XCode Command Line tools：<code>xcode-select --install</code>",
-        "cmake": "CMake：<a href=\"https://cmake.org/download/\" target=\"_blank\" rel=\"noopener noreferrer\">cmake.org</a>",
-        "ecm": "extra-cmake-modules",
-        "java": "JDK 8：<a href=\"https://adoptium.net/\" target=\"_blank\" rel=\"noopener noreferrer\">Adoptium</a>",
-        "qt": "Qt 6 (推荐) 或 Qt 5.12+"
-      },
-      "homebrew": {
-        "title": "使用 Homebrew 安装"
-      },
-      "build": {
-        "title": "构建"
-      },
-      "sign_note": "注意：最终应用包可能由于代码签名问题无法运行，需要使用 <code>codesign -fs -</code> 修复。"
+    "language": {
+        "select": "选择语言"
     },
-    "output": {
-      "title": "构建输出",
-      "install": "标准构建：<code>install/</code> 目录",
-      "portable": "便携版：使用 <code>--component portable</code> 参数"
-    },
-    "upstream": {
-      "title": "上游参考",
-      "desc": "Luna Launcher 基于 Prism Launcher，更详细的构建说明可以参考上游文档：",
-      "windows": "Windows 构建说明",
-      "linux": "Linux 构建说明",
-      "macos": "macOS 构建说明"
-    },
-    "back": "返回首页",
-    "help": "需要帮助？"
-  },
-  "footer": {
-    "copyright": "© 2025-2026 Luna Launcher Project",
-    "home": "首页",
-    "github": "GitHub",
-    "releases": "Releases",
-    "issues": "Issues",
-    "disclaimer": "Luna Launcher 是一个独立的 Prism Launcher 分支项目,不隶属于、也不代表 Prism Launcher 项目。"
-  },
-  "language": {
-    "select": "选择语言"
-  }
+    "oauth": {
+        "title": "登录成功",
+        "success_title": "登录成功",
+        "error_title": "登录失败",
+        "error_message": "认证过程中出现问题",
+        "question_title": "出现疑问",
+        "question_message": "可能出现了某些问题",
+        "redirecting": "正在返回 Luna Launcher...",
+        "wait": "请稍候",
+        "manual_instruction": "如果页面没有自动跳转，请手动关闭此窗口。"
+    }
 }

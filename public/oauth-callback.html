@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="oauth.title">登录成功 - Luna Launcher</title>
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Luna Launcher OAuth 回调">
+    <link rel="icon" type="image/png" href="resources/org.lunalauncher.LunaLauncher_256.png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .oauth-layout {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .oauth-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .oauth-card {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            padding: 48px 40px;
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.06));
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .oauth-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 92, 255, 0.2), rgba(0, 212, 255, 0.15));
+            border: 1px solid rgba(124, 92, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .oauth-icon.success {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.15));
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        .oauth-icon.error {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.15));
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+        .oauth-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke-width: 2.5;
+        }
+        .oauth-icon.success svg { color: #10b981; }
+        .oauth-icon.error svg { color: #ef4444; }
+        .oauth-icon.question {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.15));
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+        .oauth-icon.question svg { color: #f59e0b; }
+        .oauth-card h1 {
+            display: block;
+            width: 100%;
+            clear: both;
+            font-size: 24px;
+            margin: 0 0 12px;
+        }
+        .oauth-message {
+            display: block;
+            width: 100%;
+            clear: both;
+            color: var(--muted);
+            font-size: 15px;
+            margin: 0 0 24px;
+            line-height: 1.6;
+        }
+        .oauth-spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .oauth-progress {
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        .oauth-progress-text {
+            font-size: 13px;
+            color: var(--muted-2);
+        }
+        .oauth-footer {
+            padding: 26px 0 20px;
+            color: var(--muted-2);
+            font-size: 13px;
+        }
+        .oauth-footer .footer-disclaimer {
+            margin-top: 10px;
+            color: var(--muted-2);
+        }
+        .oauth-footer .footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border);
+            padding-top: 18px;
+        }
+        .oauth-footer .footer-links {
+            display: inline-flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .oauth-footer .footer-links a {
+            color: var(--muted);
+        }
+        @media (max-width: 480px) {
+            .oauth-card {
+                padding: 32px 24px;
+            }
+            .oauth-card h1 {
+                font-size: 20px;
+            }
+            .oauth-footer .footer-row {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="oauth-layout">
+        <div class="container">
+            <div class="topbar">
+                <a class="brand" href="index.html#top">
+                    <img src="resources/org.lunalauncher.LunaLauncher_256.png" alt="Luna Launcher">
+                    <strong>Luna Launcher</strong>
+                </a>
+                <nav class="nav" aria-label="导航">
+                    <a href="index.html#features" data-i18n="nav.features">特性</a>
+                    <a href="index.html#get" data-i18n="nav.get">获取</a>
+                    <a href="build.html" data-i18n="nav.build">构建</a>
+                    <a href="index.html#community" data-i18n="nav.community">参与</a>
+                </nav>
+                <div class="language-selector">
+                    <button type="button" id="language-button" class="language-button" aria-label="切换语言" title="Switch Language">
+                        <svg class="language-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="current-lang">简体中文</span>
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div id="language-menu" class="language-menu">
+                        <button type="button" class="language-option" data-lang="zh-CN">简体中文</button>
+                        <button type="button" class="language-option" data-lang="en-US">English</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="oauth-main">
+            <div class="oauth-card">
+                <div class="oauth-icon" id="oauth-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <h1 class="oauth-title" data-i18n="oauth.title">登录成功</h1>
+                <p class="oauth-message" id="oauth-message" data-i18n="oauth.redirecting">正在返回 Luna Launcher...</p>
+                <div class="oauth-progress">
+                    <p class="oauth-progress-text">
+                        <span class="oauth-spinner"></span>
+                        <span data-i18n="oauth.wait">请稍候</span>
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="oauth-footer">
+            <div class="container">
+                <div class="footer-row">
+                    <div data-i18n="footer.copyright">© 2025-2026 Luna Launcher Project</div>
+                    <div class="footer-links">
+                        <a href="https://github.com/AndreaFrederica/LunaLauncher" target="_blank" rel="noopener noreferrer" data-i18n="footer.github">GitHub</a>
+                        <a href="https://github.com/AndreaFrederica/LunaLauncher/releases" target="_blank" rel="noopener noreferrer" data-i18n="footer.releases">Releases</a>
+                        <a href="https://github.com/AndreaFrederica/LunaLauncher/issues" target="_blank" rel="noopener noreferrer" data-i18n="footer.issues">Issues</a>
+                    </div>
+                </div>
+                <div class="footer-disclaimer" data-i18n="footer.disclaimer">Luna Launcher 是一个独立的 Prism Launcher 分支项目,不隶属于、也不代表 Prism Launcher 项目。</div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script>
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        const state = params.get('state');
+        const error = params.get('error');
+        const errorDescription = params.get('error_description');
+        const debugMode = params.get('debug') === '1'; // 必须 ?debug=1 才进入调试模式
+
+        // OAuth result object - exposed to console for debugging
+        window.lunaOAuth = {
+            success: false,
+            error: null,
+            code: null,
+            state: null,
+            timestamp: new Date().toISOString(),
+            redirectUrl: null
+        };
+
+        // Get text elements
+        const titleEl = document.querySelector('h1');
+        const messageEl = document.getElementById('oauth-message');
+        const iconEl = document.getElementById('oauth-icon');
+        const progressEl = document.querySelector('.oauth-progress');
+
+        // Custom URL scheme for the launcher
+        const REDIRECT_SCHEME = 'lunalauncher://oauth/microsoft';
+        const REDIRECT_URL = REDIRECT_SCHEME + window.location.search;
+
+        // Store redirect URL for console access
+        window.lunaOAuth.redirectUrl = REDIRECT_URL;
+
+        function setSuccessState() {
+            iconEl.classList.remove('error', 'question');
+            iconEl.classList.add('success');
+            iconEl.querySelector('svg').innerHTML = '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>';
+            titleEl.textContent = i18n.translations.oauth?.success_title || '登录成功';
+            messageEl.textContent = i18n.translations.oauth?.redirecting || '正在返回 Luna Launcher...';
+            window.lunaOAuth.success = true;
+            window.lunaOAuth.error = null;
+            console.log('%c[Luna OAuth] Login successful!', 'color: #10b981; font-weight: bold;');
+            console.log('[Luna OAuth] Result:', window.lunaOAuth);
+        }
+
+        function setErrorState(errorMsg) {
+            iconEl.classList.remove('success', 'question');
+            iconEl.classList.add('error');
+            iconEl.querySelector('svg').innerHTML = '<circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line>';
+            titleEl.textContent = i18n.translations.oauth?.error_title || '登录失败';
+            messageEl.textContent = errorMsg || (i18n.translations.oauth?.error_message || '认证过程中出现问题');
+            window.lunaOAuth.success = false;
+            window.lunaOAuth.error = errorMsg || error;
+            console.log('%c[Luna OAuth] Login failed!', 'color: #ef4444; font-weight: bold;');
+            console.log('[Luna OAuth] Result:', window.lunaOAuth);
+        }
+
+        function setQuestionState() {
+            iconEl.classList.remove('success', 'error');
+            iconEl.classList.add('question');
+            iconEl.querySelector('svg').innerHTML = '<circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line>';
+            titleEl.textContent = i18n.translations.oauth?.question_title || '出现疑问';
+            messageEl.textContent = i18n.translations.oauth?.question_message || '可能出现了某些问题';
+            window.lunaOAuth.success = false;
+            window.lunaOAuth.error = 'unknown_state';
+            console.log('[Luna OAuth] Question state - no parameters');
+        }
+
+        // Expose simulation functions for debugging
+        window.simulateSuccess = function() {
+            console.log('[Luna OAuth] Simulating success state...');
+            setSuccessState();
+            progressEl.innerHTML = '<p class="oauth-progress-text" style="color: var(--muted);">[调试模式] 模拟成功状态</p>';
+        };
+
+        window.simulateError = function(msg) {
+            console.log('[Luna OAuth] Simulating error state...');
+            setErrorState(msg || '调试模拟错误');
+            progressEl.innerHTML = '<p class="oauth-progress-text" style="color: var(--muted);">[调试模式] 模拟错误状态</p>';
+        };
+
+        // Expose a helper function to console
+        window.getOAuthResult = function() {
+            return JSON.parse(JSON.stringify(window.lunaOAuth));
+        };
+
+        // Determine initial state
+        if (error) {
+            // OAuth error - 真实错误回调
+            setErrorState(errorDescription || error);
+        } else if (code || state === 'success') {
+            // OAuth success - 真实成功回调
+            setSuccessState();
+        } else if (debugMode) {
+            // Debug mode - 仅当 ?debug=1 时
+            console.log('%c[Luna OAuth] Debug mode!', 'color: #7c5cff; font-weight: bold;');
+            console.log('Commands: simulateSuccess(), simulateError("msg"), getOAuthResult()');
+            progressEl.innerHTML = '<p class="oauth-progress-text" style="color: var(--accent);">[调试模式] 使用 simulateSuccess() 或 simulateError() 测试</p>';
+        } else {
+            // 没有参数 - 疑问状态
+            setQuestionState();
+        }
+
+        // Redirect back to the launcher app
+        function doRedirect() {
+            if (debugMode) return;
+
+            // Store result for the app to read
+            sessionStorage.setItem('lunaOAuthResult', JSON.stringify(window.lunaOAuth));
+
+            // Redirect to app
+            window.location.replace(REDIRECT_URL);
+
+            // Try to close this window after a short delay
+            setTimeout(function() {
+                // Check if we were actually redirected
+                if (window.location.protocol !== REDIRECT_SCHEME + ':') {
+                    // Still here, show manual instruction
+                    progressEl.innerHTML = '<p class="oauth-progress-text" style="color: var(--muted);">' +
+                        (i18n.translations.oauth?.manual_instruction || '请手动关闭此窗口') + '</p>';
+                } else {
+                    // Redirected to app, try to close this window
+                    try {
+                        window.close();
+                    } catch (e) {
+                        // Ignore if not allowed
+                    }
+                }
+            }, 500);
+        }
+
+        // 只有在有参数时才自动跳转
+        if (!debugMode && (code || state || error)) {
+            setTimeout(doRedirect, 1500);
+        }
+    })();
+    </script>
+</body>
+</html>
