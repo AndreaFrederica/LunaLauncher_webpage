@@ -16,6 +16,7 @@
         "title": "Lightweight, Clean, and Customizable Minecraft Launcher",
         "description": "Focused on instance isolation and making it easier to use: manage modpacks, update resources, and keep each world and configuration separate.",
         "cta_get": "Get Started",
+        "cta_actions": "Dev Builds",
         "cta_releases": "Releases",
         "cta_github": "GitHub",
         "cta_prism": "Based on Prism Launcher",
@@ -54,6 +55,7 @@
         "panel_build": "Recommended: Build and run it yourself following the build guide. You can also check Releases for preview builds.",
         "panel_contact": "If you need a test version or encounter issues, feel free to contact the developer through Issues.",
         "btn_build": "Build Guide",
+        "btn_actions": "Dev Builds",
         "btn_releases": "View Releases",
         "btn_issues": "Contact Developer",
         "notice": "Note: Mirror API support (including BMCLAPI) is still being improved. If you encounter download issues, please provide feedback so we can improve."

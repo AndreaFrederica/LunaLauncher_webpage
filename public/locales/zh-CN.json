@@ -16,6 +16,7 @@
         "title": "轻量、整洁、可定制的 Minecraft 启动器",
         "description": "以实例隔离为核心,专注\"用起来更省心\":管理整包、更新资源、保持每个世界与配置互不干扰。",
         "cta_get": "获取与使用",
+        "cta_actions": "开发版本",
         "cta_releases": "Releases",
         "cta_github": "GitHub",
         "cta_prism": "参考 Prism Launcher",
@@ -54,6 +55,7 @@
         "panel_build": "推荐方式:按照构建指南自行编译运行。也可以在 Releases 查看是否提供预览构建。",
         "panel_contact": "如果你需要测试版本或遇到问题,欢迎通过 Issues 联系开发者。",
         "btn_build": "构建指南",
+        "btn_actions": "开发版本",
         "btn_releases": "查看 Releases",
         "btn_issues": "联系开发者",
         "notice": "提示:镜像 API(含 BMCLAPI)支持仍在完善;如果你遇到下载异常,请优先反馈问题以便我们改进。"
