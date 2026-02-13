@@ -33,6 +33,12 @@ website/
 - 自适应不同屏幕尺寸
 - 明暗主题自动切换
 
+### 4. LunaUI 文档入口
+- 官网首页包含 LunaUI 自定义面板脚本能力介绍
+- 提供开发文档与 `.d.ts` 类型定义的入口链接:
+  - `docs/lunaui/README.md`
+  - `docs/lunaui/lunaui.d.ts`
+
 ## 如何使用
 
 ### 本地预览

@@ -48,7 +48,9 @@
         "server_desc": "从工具栏快速进入服务器预览，实时查看服务器状态和玩家信息，一键连接到常玩的服务器。",
         "server_mgmt_title": "服务端管理",
         "server_mgmt_badge": "开发中",
-        "server_mgmt_desc": "让启动器也能启动服务端，方便与朋友进行多人游戏。适合小型服务器和临时联机场景。"
+        "server_mgmt_desc": "让启动器也能启动服务端，方便与朋友进行多人游戏。适合小型服务器和临时联机场景。",
+        "lunaui_title": "LunaUI 自定义面板脚本",
+        "lunaui_desc": "支持在 <code>lunaui/</code> 目录里使用 JS/JSON 编写自定义设置面板。可读取实例状态、切换模组启用状态，并提供官方文档与类型定义：<a href=\"https://github.com/AndreaFrederica/LunaLauncher/blob/develop/docs/lunaui/README.md\" target=\"_blank\" rel=\"noopener noreferrer\">开发文档</a> · <a href=\"https://github.com/AndreaFrederica/LunaLauncher/blob/develop/docs/lunaui/lunaui.d.ts\" target=\"_blank\" rel=\"noopener noreferrer\">类型定义（.d.ts）</a>。"
     },
     "get": {
         "title": "获取与使用",
@@ -56,6 +58,8 @@
         "panel_build": "推荐方式:按照构建指南自行编译运行。也可以在 Releases 查看是否提供预览构建。",
         "panel_contact": "如果你需要测试版本或遇到问题,欢迎通过 Issues 联系开发者。",
         "btn_build": "构建指南",
+        "btn_lunaui_docs": "LunaUI 文档",
+        "btn_lunaui_types": "LunaUI 类型定义",
         "btn_actions": "开发版本",
         "btn_releases": "查看 Releases",
         "btn_issues": "联系开发者",

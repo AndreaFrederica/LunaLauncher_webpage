@@ -48,7 +48,9 @@
         "server_desc": "Quickly access server preview from the toolbar, view server status and player information in real-time, and connect to your favorite servers with one click.",
         "server_mgmt_title": "Server Management",
         "server_mgmt_badge": "WIP",
-        "server_mgmt_desc": "Launch and manage servers directly from the launcher, making it easy to play with friends. Suitable for small servers and casual multiplayer sessions."
+        "server_mgmt_desc": "Launch and manage servers directly from the launcher, making it easy to play with friends. Suitable for small servers and casual multiplayer sessions.",
+        "lunaui_title": "LunaUI Custom Panel Scripting",
+        "lunaui_desc": "Build custom setting panels with JS/JSON inside <code>lunaui/</code>. You can read instance state, toggle mods, and use the official docs and type definitions: <a href=\"https://github.com/AndreaFrederica/LunaLauncher/blob/develop/docs/lunaui/README.md\" target=\"_blank\" rel=\"noopener noreferrer\">Docs</a> · <a href=\"https://github.com/AndreaFrederica/LunaLauncher/blob/develop/docs/lunaui/lunaui.d.ts\" target=\"_blank\" rel=\"noopener noreferrer\">Type Definitions (.d.ts)</a>."
     },
     "get": {
         "title": "Get Started",
@@ -56,6 +58,8 @@
         "panel_build": "Recommended: Build and run it yourself following the build guide. You can also check Releases for preview builds.",
         "panel_contact": "If you need a test version or encounter issues, feel free to contact the developer through Issues.",
         "btn_build": "Build Guide",
+        "btn_lunaui_docs": "LunaUI Docs",
+        "btn_lunaui_types": "LunaUI Types",
         "btn_actions": "Dev Builds",
         "btn_releases": "View Releases",
         "btn_issues": "Contact Developer",
