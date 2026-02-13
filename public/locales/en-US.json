@@ -19,6 +19,7 @@
         "cta_actions": "Dev Builds",
         "cta_releases": "Releases",
         "cta_github": "GitHub",
+        "cta_qq": "QQ Group",
         "cta_prism": "Based on Prism Launcher",
         "badge_instance": "Instance Isolation",
         "badge_modpack": "Modpack Management",
@@ -65,6 +66,8 @@
         "lead": "We carefully read every piece of feedback and welcome contributions to development.",
         "feedback_title": "Submit Feedback",
         "feedback_desc": "Submit issues, feature requests, or UI suggestions to GitHub Issues, and include logs and reproduction steps when possible.",
+        "qq_title": "QQ Group",
+        "qq_desc": "Join our QQ group (1084744325) to chat with other users, get help, or share your experience.",
         "contribute_title": "Contribute Code & Design",
         "contribute_desc": "Whether it's fixing a small bug or providing new icons and UI designs, all contributions are valuable."
     },
@@ -223,6 +226,7 @@
         "github": "GitHub",
         "releases": "Releases",
         "issues": "Issues",
+        "qq": "QQ Group",
         "disclaimer": "Luna Launcher is an independent fork of Prism Launcher and is not affiliated with or endorsed by the Prism Launcher project."
     },
     "language": {
