@@ -145,12 +145,10 @@
             "msvc": {
                 "title": "Option B: Pixi + MSVC",
                 "desc": "Uses Pixi with MSVC toolchain. Run from x64 Native Tools Command Prompt.",
-                "comment1": "# Check / configure MSVC",
-                "comment2": "# Install Qt",
-                "comment3": "# Install vcpkg",
-                "comment4": "# Configure",
-                "comment5": "# Build",
-                "comment6": "# Install"
+                "comment1": "# Install Qt",
+                "comment2": "# Configure",
+                "comment3": "# Build",
+                "comment4": "# Install"
             },
             "msvc_manual": {
                 "title": "Manual Build: MSVC",
