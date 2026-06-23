@@ -111,3 +111,117 @@ website/
 ## 许可证
 
 与 Luna Launcher 项目保持一致
+
+---
+
+# 构建 Luna Launcher
+
+## NextGen 构建（Meson + Pixi）— 推荐方式
+
+新的构建系统使用 **Meson** 构建，**Pixi** 管理依赖。这是推荐的构建方式。
+
+### 前置要求
+
+- [Pixi](https://pixi.sh/latest/installation/)
+- **Windows：** Visual Studio 2022 Build Tools（在 x64 Native Tools Command Prompt 中运行）
+- **Linux：** `gcc`、`g++`、`pkg-config`、Qt 6 开发库
+
+### 快速开始
+
+```bash
+# 克隆仓库（含子模块）
+git clone --recursive https://github.com/AndreaFrederica/LunaLauncher.git
+cd LunaLauncher
+
+# 配置 + 构建 + 安装
+pixi run configure
+pixi run build
+pixi run install
+```
+
+### 可用任务
+
+| 命令 | 说明 |
+|------|------|
+| `pixi run configure` | 配置 Meson 构建目录 |
+| `pixi run build` | 使用 Meson 编译 |
+| `pixi run install` | 安装到 `install-{profile}/` |
+| `pixi run deploy` | 部署 Qt 运行时 DLL（仅 Windows） |
+| `pixi run test` | 运行构建产物 |
+| `pixi run clean-all` | 清理所有构建目录 |
+
+### 构建配置
+
+| 配置 | 说明 |
+|------|------|
+| `release`（默认） | Release 构建，静态库 |
+| `debug` | Debug 构建，动态库 |
+| `linux-x64-gcc-release` | 从 Windows 交叉编译 Linux 版本 |
+
+```bash
+pixi run build --profile debug
+```
+
+### 离线测试构建（仅用于自动化测试）
+
+CI/自动化测试可以构建禁用所有权验证的版本：
+
+```powershell
+# PowerShell
+$env:LUNA_DISABLE_OWNERSHIP_CHECK = "1"
+$env:LUNA_BUILD_DIR = "test-offline/build"
+$env:LUNA_INSTALL_DIR = "test-offline/install"
+pixi run build debug
+```
+
+或使用内置任务：
+
+```bash
+pixi run build-test-offline
+```
+
+> **警告：** 离线测试构建会禁用 Minecraft 所有权验证。仅用于自动化测试，不要用于正式构建。
+
+### 隔离构建（多分支并行）
+
+使用 `LUNA_BUILD_DIR` 和 `LUNA_INSTALL_DIR` 隔离不同分支的构建：
+
+```bash
+LUNA_BUILD_DIR=branch-a/build LUNA_INSTALL_DIR=branch-a/install pixi run build debug
+```
+
+相对路径会自动解析到项目根目录下。
+
+---
+
+## 旧版构建（CMake）— 已弃用
+
+> **注意：** 基于 CMake 的构建系统已**弃用**，将在未来版本中移除。请迁移到上方的 Meson + Pixi 构建方式。
+
+<details>
+<summary>点击展开旧版 CMake 构建说明</summary>
+
+### Windows（MSYS2）
+
+```bash
+pacboy -S toolchain:p cmake:p ninja:p qt6-base:p qt6-5compat:p qt6-svg:p qt6-imageformats:p quazip-qt6:p extra-cmake-modules:p ccache:p
+
+cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install
+cmake --build build
+cmake --install build
+```
+
+### Windows（MSVC）
+
+```cmd
+REM 在 x64 Native Tools Command Prompt 中运行
+cmake -Bbuild -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=install -DCMAKE_PREFIX_PATH=C:\Qt\6.x.x\msvc2022_64\lib\cmake
+cmake --build build
+cmake --install build
+```
+
+### Linux / macOS
+
+参考 [上游 Prism Launcher 文档](https://prismlauncher.org/wiki/development/)。
+
+</details>
