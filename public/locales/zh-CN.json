@@ -81,6 +81,42 @@
     "build": {
         "title": "构建指南",
         "lead": "本文介绍如何从源代码构建 Luna Launcher。",
+        "nextgen": {
+            "title": "NextGen 构建（Meson + Pixi）— 推荐方式",
+            "desc": "新的构建系统使用 <strong>Meson</strong> 构建，<strong>Pixi</strong> 管理依赖。这是推荐的构建方式。",
+            "prereq": {
+                "title": "前置要求",
+                "win": "<strong>Windows：</strong>Visual Studio 2022 Build Tools（在 x64 Native Tools Command Prompt 中运行）",
+                "linux": "<strong>Linux：</strong><code>gcc</code>、<code>g++</code>、<code>pkg-config</code>、Qt 6 开发库"
+            },
+            "quickstart": {
+                "title": "快速开始"
+            },
+            "tasks": {
+                "title": "可用任务",
+                "cmd": "命令",
+                "desc": "说明",
+                "configure": "配置 Meson 构建目录",
+                "build": "使用 Meson 编译",
+                "install": "安装到 <code>install-{profile}/</code>",
+                "deploy": "部署 Qt 运行时 DLL（仅 Windows）",
+                "test": "运行构建产物",
+                "clean": "清理所有构建目录"
+            },
+            "profile_note": "可通过 <code>--profile debug</code> 切换构建配置（默认 <code>release</code>）。",
+            "offline": {
+                "title": "离线测试构建（仅用于自动化测试）",
+                "warn": "警告：离线测试构建会禁用 Minecraft 所有权验证。仅用于自动化测试，不要用于正式构建。"
+            },
+            "isolated": {
+                "title": "隔离构建（多分支并行）",
+                "desc": "使用 <code>LUNA_BUILD_DIR</code> 和 <code>LUNA_INSTALL_DIR</code> 环境变量隔离不同分支的构建。相对路径会自动解析到项目根目录下。"
+            }
+        },
+        "legacy": {
+            "title": "旧版构建（CMake）— 已弃用",
+            "warn": "基于 CMake 的构建系统已弃用，将在未来版本中移除。请迁移到上方的 Meson + Pixi 构建方式。"
+        },
         "prerequisites": {
             "title": "前置要求",
             "git": "Git",

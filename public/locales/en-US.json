@@ -81,6 +81,42 @@
     "build": {
         "title": "Build Guide",
         "lead": "This guide explains how to build Luna Launcher from source.",
+        "nextgen": {
+            "title": "NextGen Build (Meson + Pixi) — Recommended",
+            "desc": "The new build system uses <strong>Meson</strong> for building and <strong>Pixi</strong> for dependency management. This is the recommended way to build.",
+            "prereq": {
+                "title": "Prerequisites",
+                "win": "<strong>Windows:</strong> Visual Studio 2022 Build Tools (run from x64 Native Tools Command Prompt)",
+                "linux": "<strong>Linux:</strong> <code>gcc</code>, <code>g++</code>, <code>pkg-config</code>, Qt 6 dev libraries"
+            },
+            "quickstart": {
+                "title": "Quick Start"
+            },
+            "tasks": {
+                "title": "Available Tasks",
+                "cmd": "Command",
+                "desc": "Description",
+                "configure": "Configure Meson build directory",
+                "build": "Compile with Meson",
+                "install": "Install to <code>install-{profile}/</code>",
+                "deploy": "Deploy Qt runtime DLLs (Windows only)",
+                "test": "Run built executable",
+                "clean": "Remove all build directories"
+            },
+            "profile_note": "Switch build profiles with <code>--profile debug</code> (default: <code>release</code>).",
+            "offline": {
+                "title": "Offline Test Build (Automated Testing Only)",
+                "warn": "Warning: The offline test build disables Minecraft ownership verification. For automated testing only — do NOT use in production builds."
+            },
+            "isolated": {
+                "title": "Isolated Builds (Multi-branch)",
+                "desc": "Use <code>LUNA_BUILD_DIR</code> and <code>LUNA_INSTALL_DIR</code> environment variables to isolate builds per branch. Relative paths resolve against the project root."
+            }
+        },
+        "legacy": {
+            "title": "Legacy Build (CMake) — Deprecated",
+            "warn": "The CMake-based build system is deprecated and will be removed in a future release. Please migrate to the Meson + Pixi build system above."
+        },
         "prerequisites": {
             "title": "Prerequisites",
             "git": "Git",

@@ -19,88 +19,33 @@
         <aside class="page-toc" data-i18n-lang="zh-CN">
             <div class="toc-header">目录</div>
             <nav class="toc-nav">
-                <a href="#prerequisites" class="toc-item">
+                <a href="#nextgen" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">NextGen 构建 (推荐)</span>
+                </a>
+                <a href="#nextgen-prereq" class="toc-item toc-subitem">
                     <span class="toc-dot"></span>
                     <span class="toc-text">前置要求</span>
+                </a>
+                <a href="#nextgen-quickstart" class="toc-item toc-subitem">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">快速开始</span>
+                </a>
+                <a href="#nextgen-tasks" class="toc-item toc-subitem">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">可用任务</span>
+                </a>
+                <a href="#nextgen-isolated" class="toc-item toc-subitem">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">隔离构建</span>
                 </a>
                 <a href="#get-source" class="toc-item">
                     <span class="toc-dot"></span>
                     <span class="toc-text">获取源代码</span>
                 </a>
-                <div class="toc-group" data-section="windows">
-                    <a href="#windows" class="toc-item toc-parent">
-                        <span class="toc-dot"></span>
-                        <span class="toc-text">Windows 构建</span>
-                        <span class="toc-arrow"></span>
-                    </a>
-                    <div class="toc-submenu">
-                        <a href="#windows-msys2-auto" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">自动化：MSYS2</span>
-                        </a>
-                        <a href="#windows-msys2-manual" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">手动：MSYS2</span>
-                        </a>
-                        <a href="#windows-msvc-auto" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">自动化：Pixi</span>
-                        </a>
-                        <a href="#windows-msvc-manual" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">手动：MSVC</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="toc-group" data-section="linux">
-                    <a href="#linux" class="toc-item toc-parent">
-                        <span class="toc-dot"></span>
-                        <span class="toc-text">Linux 构建</span>
-                        <span class="toc-arrow"></span>
-                    </a>
-                    <div class="toc-submenu">
-                        <a href="#linux-prereq" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">构建依赖</span>
-                        </a>
-                        <a href="#linux-portable" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">便携版</span>
-                        </a>
-                        <a href="#linux-system" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">系统安装</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="toc-group" data-section="macos">
-                    <a href="#macos" class="toc-item toc-parent">
-                        <span class="toc-dot"></span>
-                        <span class="toc-text">macOS 构建</span>
-                        <span class="toc-arrow"></span>
-                    </a>
-                    <div class="toc-submenu">
-                        <a href="#macos-prereq" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">前置要求</span>
-                        </a>
-                        <a href="#macos-homebrew" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Homebrew</span>
-                        </a>
-                        <a href="#macos-build" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">构建</span>
-                        </a>
-                    </div>
-                </div>
-                <a href="#output" class="toc-item">
+                <a href="#legacy" class="toc-item">
                     <span class="toc-dot"></span>
-                    <span class="toc-text">构建输出</span>
-                </a>
-                <a href="#upstream" class="toc-item">
-                    <span class="toc-dot"></span>
-                    <span class="toc-text">上游参考</span>
+                    <span class="toc-text">旧版构建 (已弃用)</span>
                 </a>
             </nav>
             <div class="toc-progress">
@@ -111,88 +56,33 @@
         <aside class="page-toc" data-i18n-lang="en-US">
             <div class="toc-header">Contents</div>
             <nav class="toc-nav">
-                <a href="#prerequisites" class="toc-item">
+                <a href="#nextgen" class="toc-item">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">NextGen Build (Recommended)</span>
+                </a>
+                <a href="#nextgen-prereq" class="toc-item toc-subitem">
                     <span class="toc-dot"></span>
                     <span class="toc-text">Prerequisites</span>
+                </a>
+                <a href="#nextgen-quickstart" class="toc-item toc-subitem">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">Quick Start</span>
+                </a>
+                <a href="#nextgen-tasks" class="toc-item toc-subitem">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">Available Tasks</span>
+                </a>
+                <a href="#nextgen-isolated" class="toc-item toc-subitem">
+                    <span class="toc-dot"></span>
+                    <span class="toc-text">Isolated Builds</span>
                 </a>
                 <a href="#get-source" class="toc-item">
                     <span class="toc-dot"></span>
                     <span class="toc-text">Get the Source</span>
                 </a>
-                <div class="toc-group" data-section="windows">
-                    <a href="#windows" class="toc-item toc-parent">
-                        <span class="toc-dot"></span>
-                        <span class="toc-text">Building on Windows</span>
-                        <span class="toc-arrow"></span>
-                    </a>
-                    <div class="toc-submenu">
-                        <a href="#windows-msys2-auto" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Automated: MSYS2</span>
-                        </a>
-                        <a href="#windows-msys2-manual" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Manual: MSYS2</span>
-                        </a>
-                        <a href="#windows-msvc-auto" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Automated: Pixi</span>
-                        </a>
-                        <a href="#windows-msvc-manual" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Manual: MSVC</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="toc-group" data-section="linux">
-                    <a href="#linux" class="toc-item toc-parent">
-                        <span class="toc-dot"></span>
-                        <span class="toc-text">Building on Linux</span>
-                        <span class="toc-arrow"></span>
-                    </a>
-                    <div class="toc-submenu">
-                        <a href="#linux-prereq" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Dependencies</span>
-                        </a>
-                        <a href="#linux-portable" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Portable</span>
-                        </a>
-                        <a href="#linux-system" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">System Install</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="toc-group" data-section="macos">
-                    <a href="#macos" class="toc-item toc-parent">
-                        <span class="toc-dot"></span>
-                        <span class="toc-text">Building on macOS</span>
-                        <span class="toc-arrow"></span>
-                    </a>
-                    <div class="toc-submenu">
-                        <a href="#macos-prereq" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Prerequisites</span>
-                        </a>
-                        <a href="#macos-homebrew" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Homebrew</span>
-                        </a>
-                        <a href="#macos-build" class="toc-item toc-subitem">
-                            <span class="toc-dot"></span>
-                            <span class="toc-text">Build</span>
-                        </a>
-                    </div>
-                </div>
-                <a href="#output" class="toc-item">
+                <a href="#legacy" class="toc-item">
                     <span class="toc-dot"></span>
-                    <span class="toc-text">Build Output</span>
-                </a>
-                <a href="#upstream" class="toc-item">
-                    <span class="toc-dot"></span>
-                    <span class="toc-text">Upstream Reference</span>
+                    <span class="toc-text">Legacy Build (Deprecated)</span>
                 </a>
             </nav>
             <div class="toc-progress">
@@ -235,14 +125,66 @@
             <h1 data-i18n="build.title">构建指南</h1>
             <p class="lead" data-i18n="build.lead">本文介绍如何从源代码构建 Luna Launcher。</p>
 
-            <section class="build-section" id="prerequisites">
-                <h2 data-i18n="build.prerequisites.title">前置要求</h2>
+            <section class="build-section" id="nextgen">
+                <h2 data-i18n="build.nextgen.title">NextGen 构建（Meson + Pixi）— 推荐方式</h2>
+                <p data-i18n="build.nextgen.desc">新的构建系统使用 <strong>Meson</strong> 构建，<strong>Pixi</strong> 管理依赖。这是推荐的构建方式。</p>
+
+                <h3 id="nextgen-prereq" data-i18n="build.nextgen.prereq.title">前置要求</h3>
                 <ul class="build-list">
-                    <li data-i18n="build.prerequisites.git">Git</li>
-                    <li data-i18n="build.prerequisites.java">Java Development Kit 8 或更高版本</li>
-                    <li data-i18n="build.prerequisites.cmake">CMake 3.16 或更高版本</li>
-                    <li data-i18n="build.prerequisites.qt">Qt 6 (推荐 6.6.2) 或 Qt 5 (推荐 5.15.2)</li>
+                    <li><a href="https://pixi.sh/latest/installation/" target="_blank" rel="noopener noreferrer">Pixi</a></li>
+                    <li data-i18n="build.nextgen.prereq.win"><strong>Windows：</strong>Visual Studio 2022 Build Tools（在 x64 Native Tools Command Prompt 中运行）</li>
+                    <li data-i18n="build.nextgen.prereq.linux"><strong>Linux：</strong><code>gcc</code>、<code>g++</code>、<code>pkg-config</code>、Qt 6 开发库</li>
                 </ul>
+
+                <h3 id="nextgen-quickstart" data-i18n="build.nextgen.quickstart.title">快速开始</h3>
+                <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
+                    <pre><code><span class="code-comment"># 克隆仓库（含子模块）</span>
+git clone --recursive https://github.com/AndreaFrederica/LunaLauncher.git
+cd LunaLauncher
+<span class="code-comment"># 配置 + 构建 + 安装</span>
+pixi run configure
+pixi run build
+pixi run install</code></pre>
+                </div>
+
+                <h3 id="nextgen-tasks" data-i18n="build.nextgen.tasks.title">可用任务</h3>
+                <table style="width:100%; border-collapse:collapse; margin:16px 0;">
+                    <thead>
+                        <tr style="border-bottom:2px solid var(--border,#333);">
+                            <th style="text-align:left; padding:8px;" data-i18n="build.nextgen.tasks.cmd">命令</th>
+                            <th style="text-align:left; padding:8px;" data-i18n="build.nextgen.tasks.desc">说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run configure</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.configure">配置 Meson 构建目录</td></tr>
+                        <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run build</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.build">使用 Meson 编译</td></tr>
+                        <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run install</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.install">安装到 <code>install-{profile}/</code></td></tr>
+                        <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run deploy</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.deploy">部署 Qt 运行时 DLL（仅 Windows）</td></tr>
+                        <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run test</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.test">运行构建产物</td></tr>
+                        <tr><td style="padding:8px;"><code>pixi run clean-all</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.clean">清理所有构建目录</td></tr>
+                    </tbody>
+                </table>
+
+                <p data-i18n="build.nextgen.profile_note">可通过 <code>--profile debug</code> 切换构建配置（默认 <code>release</code>）。</p>
+
+                <h3 data-i18n="build.nextgen.offline.title">离线测试构建（仅用于自动化测试）</h3>
+                <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
+                    <pre><code><span class="code-comment"># PowerShell</span>
+$env:LUNA_DISABLE_OWNERSHIP_CHECK = "1"
+$env:LUNA_BUILD_DIR = "test-offline/build"
+$env:LUNA_INSTALL_DIR = "test-offline/install"
+pixi run build debug</code></pre>
+                </div>
+                <p class="note" style="color:var(--warn,#e6a817);" data-i18n="build.nextgen.offline.warn">警告：离线测试构建会禁用 Minecraft 所有权验证。仅用于自动化测试，不要用于正式构建。</p>
+
+                <h3 id="nextgen-isolated" data-i18n="build.nextgen.isolated.title">隔离构建（多分支并行）</h3>
+                <p data-i18n="build.nextgen.isolated.desc">使用 <code>LUNA_BUILD_DIR</code> 和 <code>LUNA_INSTALL_DIR</code> 环境变量隔离不同分支的构建。相对路径会自动解析到项目根目录下。</p>
+                <div class="code-block">
+                    <button type="button" class="copy-btn">复制</button>
+                    <pre><code>LUNA_BUILD_DIR=branch-a/build LUNA_INSTALL_DIR=branch-a/install pixi run build debug</code></pre>
+                </div>
             </section>
 
             <section class="build-section" id="get-source">
@@ -255,7 +197,12 @@
                 <p class="note" data-i18n="build.get_source.note">注意：使用 --recursive 参数来克隆子模块（包含 website）。</p>
             </section>
 
-            <section class="build-section" id="windows">
+            <section class="build-section" id="legacy">
+                <details>
+                    <summary style="cursor:pointer; font-size:1.3em; font-weight:600; padding:12px 0; color:var(--warn,#e6a817);">
+                        <span data-i18n="build.legacy.title">旧版构建（CMake）— 已弃用</span>
+                    </summary>
+                    <p class="note" style="margin:8px 0 16px;" data-i18n="build.legacy.warn">基于 CMake 的构建系统已弃用，将在未来版本中移除。请迁移到上方的 Meson + Pixi 构建方式。</p>
                 <h2 data-i18n="build.windows.title">Windows 构建</h2>
 
                 <h3 id="windows-msys2-auto" data-i18n="build.windows.msys2_auto.title">自动化构建：MSYS2 + GCC（推荐）</h3>
@@ -455,6 +402,9 @@ cmake --install build</code></pre>
                     <li><a href="https://prismlauncher.org/wiki/development/build-instructions/linux/" target="_blank" rel="noopener noreferrer" data-i18n="build.upstream.linux">Linux 构建说明</a></li>
                     <li><a href="https://prismlauncher.org/wiki/development/build-instructions/macos/" target="_blank" rel="noopener noreferrer" data-i18n="build.upstream.macos">macOS 构建说明</a></li>
                 </ul>
+            </section>
+
+                </details>
             </section>
 
             <div class="cta-row" style="margin-top: 40px;">
