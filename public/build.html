@@ -127,13 +127,13 @@
 
             <section class="build-section" id="nextgen">
                 <h2 data-i18n="build.nextgen.title">NextGen 构建（Meson + Pixi）— 推荐方式</h2>
-                <p data-i18n="build.nextgen.desc">新的构建系统使用 <strong>Meson</strong> 构建，<strong>Pixi</strong> 管理依赖。这是推荐的构建方式。</p>
+                <p data-i18n-html="build.nextgen.desc">新的构建系统使用 <strong>Meson</strong> 构建，<strong>Pixi</strong> 管理依赖。这是推荐的构建方式。</p>
 
                 <h3 id="nextgen-prereq" data-i18n="build.nextgen.prereq.title">前置要求</h3>
                 <ul class="build-list">
                     <li><a href="https://pixi.sh/latest/installation/" target="_blank" rel="noopener noreferrer">Pixi</a></li>
-                    <li data-i18n="build.nextgen.prereq.win"><strong>Windows：</strong>Visual Studio 2022 Build Tools（在 x64 Native Tools Command Prompt 中运行）</li>
-                    <li data-i18n="build.nextgen.prereq.linux"><strong>Linux：</strong><code>gcc</code>、<code>g++</code>、<code>pkg-config</code>、Qt 6 开发库</li>
+                    <li data-i18n-html="build.nextgen.prereq.win"><strong>Windows：</strong>Visual Studio 2022 Build Tools（在 x64 Native Tools Command Prompt 中运行）</li>
+                    <li data-i18n-html="build.nextgen.prereq.linux"><strong>Linux：</strong><code>gcc</code>、<code>g++</code>、<code>pkg-config</code>、Qt 6 开发库</li>
                 </ul>
 
                 <h3 id="nextgen-quickstart" data-i18n="build.nextgen.quickstart.title">快速开始</h3>
@@ -159,14 +159,14 @@ pixi run install</code></pre>
                     <tbody>
                         <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run configure</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.configure">配置 Meson 构建目录</td></tr>
                         <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run build</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.build">使用 Meson 编译</td></tr>
-                        <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run install</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.install">安装到 <code>install-{profile}/</code></td></tr>
+                        <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run install</code></td><td style="padding:8px;" data-i18n-html="build.nextgen.tasks.install">安装到 <code>install-{profile}/</code></td></tr>
                         <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run deploy</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.deploy">部署 Qt 运行时 DLL（仅 Windows）</td></tr>
                         <tr style="border-bottom:1px solid var(--border,#333);"><td style="padding:8px;"><code>pixi run test</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.test">运行构建产物</td></tr>
                         <tr><td style="padding:8px;"><code>pixi run clean-all</code></td><td style="padding:8px;" data-i18n="build.nextgen.tasks.clean">清理所有构建目录</td></tr>
                     </tbody>
                 </table>
 
-                <p data-i18n="build.nextgen.profile_note">可通过 <code>--profile debug</code> 切换构建配置（默认 <code>release</code>）。</p>
+                <p data-i18n-html="build.nextgen.profile_note">可通过 <code>--profile debug</code> 切换构建配置（默认 <code>release</code>）。</p>
 
                 <h3 data-i18n="build.nextgen.offline.title">离线测试构建（仅用于自动化测试）</h3>
                 <div class="code-block">
@@ -180,7 +180,7 @@ pixi run build debug</code></pre>
                 <p class="note" style="color:var(--warn,#e6a817);" data-i18n="build.nextgen.offline.warn">警告：离线测试构建会禁用 Minecraft 所有权验证。仅用于自动化测试，不要用于正式构建。</p>
 
                 <h3 id="nextgen-isolated" data-i18n="build.nextgen.isolated.title">隔离构建（多分支并行）</h3>
-                <p data-i18n="build.nextgen.isolated.desc">使用 <code>LUNA_BUILD_DIR</code> 和 <code>LUNA_INSTALL_DIR</code> 环境变量隔离不同分支的构建。相对路径会自动解析到项目根目录下。</p>
+                <p data-i18n-html="build.nextgen.isolated.desc">使用 <code>LUNA_BUILD_DIR</code> 和 <code>LUNA_INSTALL_DIR</code> 环境变量隔离不同分支的构建。相对路径会自动解析到项目根目录下。</p>
                 <div class="code-block">
                     <button type="button" class="copy-btn">复制</button>
                     <pre><code>LUNA_BUILD_DIR=branch-a/build LUNA_INSTALL_DIR=branch-a/install pixi run build debug</code></pre>
